@@ -1,0 +1,23 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "kiosk",
+    "description": "Kiosk's general config"
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "default": "THINGS TO DO",
+      "type": "string",
+      "required": true
+    },
+    "screen_timeout_sec": {
+      "default": 120,
+      "type": "integer",
+      "required": true
+    }
+  }
+}

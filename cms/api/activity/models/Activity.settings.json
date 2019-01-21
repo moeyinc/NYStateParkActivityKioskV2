@@ -1,0 +1,44 @@
+{
+  "connection": "default",
+  "collectionName": "activity",
+  "info": {
+    "name": "activity",
+    "description": "An activity item"
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "page_title": {
+      "default": "",
+      "type": "string",
+      "required": true
+    },
+    "icon_svg": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "color_hex": {
+      "default": "#C6C6C6",
+      "type": "string",
+      "required": true
+    },
+    "button_label": {
+      "default": "",
+      "type": "string",
+      "required": true
+    },
+    "activitytabs": {
+      "collection": "activitytab",
+      "via": "activity"
+    },
+    "priority": {
+      "default": 1,
+      "min": 1,
+      "type": "integer",
+      "required": true
+    }
+  }
+}

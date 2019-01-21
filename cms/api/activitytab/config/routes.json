@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/activitytabs",
+      "handler": "Activitytab.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/activitytabs/count",
+      "handler": "Activitytab.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/activitytabs/:_id",
+      "handler": "Activitytab.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/activitytabs",
+      "handler": "Activitytab.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/activitytabs/:_id",
+      "handler": "Activitytab.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/activitytabs/:_id",
+      "handler": "Activitytab.destroy",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
