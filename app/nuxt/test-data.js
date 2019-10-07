@@ -2,7 +2,7 @@ export const generalSettings = {
   backgroundColor: { hex: '#FFE7CC' },
   textColor: { hex: '#0A3C5B' },
   kioskTitle: 'THINGS TO DO',
-  parkLogoFilename: 'park-logo.svg',
+  showParkLogo: true,
   screenTimeoutInSeconds: 300,
 };
 

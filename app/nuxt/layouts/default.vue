@@ -2,24 +2,27 @@
   <div
     class="default-layout"
     :style="{
-      backgroundColor: backgroundColor,
-      color: textColor,
+      backgroundColor: generalSettings.backgroundColor.hex,
+      color: generalSettings.textColor.hex,
     }"
   >
-    <nuxt />
+    <nuxt class="page" />
   </div>
 </template>
 
 <script>
-import { generalSettings } from '@/test-data';
+import { mapState, mapActions } from 'vuex';
+
 export default {
   computed: {
-    backgroundColor () {
-      return generalSettings.backgroundColor.hex;
-    },
-    textColor () {
-      return generalSettings.textColor.hex;
-    },
+    ...mapState(['generalSettings', 'activities']),
+  },
+  created () {
+    this.fetchGeneralSettings();
+    this.fetchActivities();
+  },
+  methods: {
+    ...mapActions(['fetchGeneralSettings', 'fetchActivities']),
   },
 };
 </script>
@@ -29,4 +32,6 @@ export default {
   width: 1920px
   height: 1080px
   overflow: hidden
+  .page
+    position: relative
 </style>
