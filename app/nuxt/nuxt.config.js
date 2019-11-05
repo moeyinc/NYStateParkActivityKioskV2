@@ -30,6 +30,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '@/plugins/vue-simple-svg',
   ],
   /*
   ** Nuxt.js dev-modules
@@ -66,7 +67,18 @@ export default {
       svgRule.test = /\.(png|jpe?g|gif|webp)$/;
       config.module.rules.push({
         test: /\.svg$/,
-        loader: 'vue-svg-loader',
+        oneOf: [
+          {
+            resourceQuery: /inline/,
+            loader: 'vue-svg-loader',
+          },
+          {
+            loader: 'file-loader',
+            query: {
+              name: 'assets/[name].[hash:8].[ext]',
+            },
+          },
+        ],
       });
 
       // add aliases
@@ -74,6 +86,7 @@ export default {
       config.resolve.alias['@images'] = resolve('assets/images');
       config.resolve.alias['@fonts'] = resolve('assets/fonts');
       config.resolve.alias['@comps'] = resolve('components');
+      config.resolve.alias['@media'] = resolve('static/media');
     },
   },
 };

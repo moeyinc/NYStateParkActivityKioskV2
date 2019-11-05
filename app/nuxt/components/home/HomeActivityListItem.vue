@@ -3,7 +3,11 @@
     class="home-activity-list-item"
     :style="buttonStyle"
   >
-    activity list item
+    <div class="inner">
+      <simple-svg
+        :src="require('@media/icons/' + activityIconFilename)"
+      />
+    </div>
   </div>
 </template>
 
@@ -44,4 +48,6 @@ export default {
 </script>
 
 <style scoped lang="stylus">
+.home-activity-list-item
+  border-radius: 50px
 </style>

@@ -14,7 +14,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import ParkLogo from '@images/park-logo.svg';
+import ParkLogo from '@images/park-logo.svg?inline';
 
 export default {
   components: {
