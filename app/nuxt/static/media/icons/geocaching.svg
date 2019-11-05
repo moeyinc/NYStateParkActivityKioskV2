@@ -2,18 +2,9 @@
 <!-- Generator: Adobe Illustrator 20.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 311 311" style="enable-background:new 0 0 311 311;" xml:space="preserve">
-<style type="text/css">
-	.st0{clip-path:url(#SVGID_2_);}
-</style>
 <g>
 	<g>
-		<defs>
-			<rect id="SVGID_1_" x="63.5" width="222" height="311"/>
-		</defs>
-		<clipPath id="SVGID_2_">
-			<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
-		</clipPath>
-		<path class="st0" d="M163.9,0.5c-13.8,0-25.1,10.1-25.1,26c0,15.9,11.2,27.1,25.1,27.1c13.8,0,25.1-11.2,25.1-27.1
+		<path class="fill-to-change" d="M163.9,0.5c-13.8,0-25.1,10.1-25.1,26c0,15.9,11.2,27.1,25.1,27.1c13.8,0,25.1-11.2,25.1-27.1
 			C189,10.7,177.8,0.5,163.9,0.5L163.9,0.5z M253,36.6c-7.6-0.2-15,2.1-21.3,6.7l2.8,5.6c4.8-3.5,10.6-5.7,16.5-5.8
 			c1.5,0,3.1,0.1,4.6,0.3c12.9,1.5,23.1,13.5,24,26.2l5.9-1.2c-1.1-13.7-9.8-25.2-22.3-29.7C259.8,37.4,256.4,36.7,253,36.6
 			L253,36.6z M252.3,48.5c-5.5-0.2-11,1.7-15.4,5.4l3.2,6.5c4.4-4.4,10.8-5.9,16.5-3.8c6.4,2.3,10.5,8.5,10.4,15.5l6.9-1.5
