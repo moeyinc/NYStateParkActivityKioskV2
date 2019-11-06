@@ -4,5 +4,9 @@ export default {
   },
   updateActivities (state, activities) {
     state.activities = activities;
+    state.selectedActivityId = activities[0].id;
+  },
+  selectActivity (state, id) {
+    state.selectedActivityId = id;
   },
 };

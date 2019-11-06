@@ -2,8 +2,8 @@
   <div class="home-activity-list">
     <div class="container">
       <HomeActivityListItem
-        v-for="(activity, index) in activities"
-        :key="index"
+        v-for="activity in activities"
+        :key="activity.id"
         :activity="activity"
         :button-width="buttonWidth"
         :button-height="buttonHeight"

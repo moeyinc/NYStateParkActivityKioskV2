@@ -1,5 +1,8 @@
 export default {
   computed: {
+    activityId () {
+      return this.activity.id;
+    },
     activityButtonLabel () {
       return this.activity.buttonLabel;
     },

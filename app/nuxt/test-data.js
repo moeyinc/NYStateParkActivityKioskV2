@@ -8,6 +8,7 @@ export const generalSettings = {
 
 export const activities = [
   {
+    id: 'adfa',
     buttonLabel: 'HIKING',
     pageTitle: 'HIKING',
     mainColor: { hex: '#B74F59' },
@@ -18,9 +19,14 @@ export const activities = [
         templateType: 'GENERAL',
         tabLabel: 'INFORMATION',
       },
+      {
+        templateType: 'GENERAL',
+        tabLabel: 'TEST',
+      },
     ],
   },
   {
+    id: 'edaf',
     buttonLabel: 'BIKING',
     pageTitle: 'BIKING',
     mainColor: { hex: '#AB5360' },
@@ -34,6 +40,7 @@ export const activities = [
     ],
   },
   {
+    id: 'hfre',
     buttonLabel: 'ROCK CLIMBING',
     pageTitle: 'ROCK CLIMBING',
     mainColor: { hex: '#90586E' },
@@ -47,6 +54,7 @@ export const activities = [
     ],
   },
   {
+    id: 'h3df',
     buttonLabel: 'PICNIC SHELTER',
     pageTitle: 'PICNIC SHELTER',
     mainColor: { hex: '#6C5E80' },
@@ -60,6 +68,7 @@ export const activities = [
     ],
   },
   {
+    id: 'kopi',
     buttonLabel: 'CAMPGROUND',
     pageTitle: 'CAMPGROUND',
     mainColor: { hex: '#40638F' },
@@ -73,6 +82,7 @@ export const activities = [
     ],
   },
   {
+    id: '2dag',
     buttonLabel: 'DISC GOLF',
     pageTitle: 'DISC GOLF',
     mainColor: { hex: '#35738C' },
@@ -86,6 +96,7 @@ export const activities = [
     ],
   },
   {
+    id: 'bbrw',
     buttonLabel: 'BIRDING',
     pageTitle: 'BIRDING',
     mainColor: { hex: '#2D8287' },
@@ -99,6 +110,7 @@ export const activities = [
     ],
   },
   {
+    id: 'omsd',
     buttonLabel: 'FISHING',
     pageTitle: 'FISING',
     mainColor: { hex: '#1E9580' },
@@ -112,6 +124,7 @@ export const activities = [
     ],
   },
   {
+    id: '1vpl',
     buttonLabel: 'WINTER ACTIVITIES',
     pageTitle: 'WINTER ACTIVITIES',
     mainColor: { hex: '#08A775' },
@@ -125,6 +138,7 @@ export const activities = [
     ],
   },
   {
+    id: 'alon',
     buttonLabel: 'GEOCACHING',
     pageTitle: 'GEOCACHING',
     mainColor: { hex: '#74AA61' },
@@ -138,6 +152,7 @@ export const activities = [
     ],
   },
   {
+    id: 'lsio',
     buttonLabel: 'PLAYGROUNDS',
     pageTitle: 'PLAYGROUNDS',
     mainColor: { hex: '#A2AA50' },
@@ -151,6 +166,7 @@ export const activities = [
     ],
   },
   {
+    id: 'bnwa',
     buttonLabel: 'FOOD',
     pageTitle: 'FOOD',
     mainColor: { hex: '#C7A83E' },
@@ -164,6 +180,7 @@ export const activities = [
     ],
   },
   {
+    id: 'loac',
     buttonLabel: 'EVENT SPACE',
     pageTitle: 'EVENT SPACE',
     mainColor: { hex: '#EEA424' },
@@ -177,6 +194,7 @@ export const activities = [
     ],
   },
   {
+    id: 'jusc',
     buttonLabel: 'PROGRAMS & EVENTS',
     pageTitle: 'PROGRAMS & EVENTS',
     mainColor: { hex: '#CE7024' },
@@ -190,6 +208,7 @@ export const activities = [
     ],
   },
   {
+    id: 'ocxn',
     buttonLabel: 'NATURE CENTER',
     pageTitle: 'NATURE CENTER',
     mainColor: { hex: '#AF4324' },

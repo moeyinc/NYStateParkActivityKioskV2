@@ -9,10 +9,7 @@
     <div class="tab-edge upper" :style="tabEdgeStyle">
       <div class="inner" :style="upperTabEdgeInnerStyle" />
     </div>
-    <div
-      class="tab"
-      :style="tabStyle"
-    >
+    <div class="tab" :style="tabStyle">
       <div class="svg-wrapper">
         <simple-svg
           :src="require('@media/icons/' + activityIconFilename)"
@@ -24,10 +21,7 @@
         />
       </div>
       <div class="label-wrapper">
-        <div
-          class="button-label"
-          :style="labelStyle"
-        >
+        <div class="button-label" :style="labelStyle">
           {{ activityButtonLabel }}
         </div>
       </div>
@@ -53,15 +47,16 @@ export default {
       type: Boolean,
       default: false,
     },
+    selected: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: () => ({
     active: false,
   }),
   computed: {
     ...mapState(['generalSettings']),
-    selected () {
-      return this.activityButtonLabel === 'HIKING';
-    },
     tabStyle () {
       return {
         backgroundColor: this.active ? 'white' : this.activityMainColor,
