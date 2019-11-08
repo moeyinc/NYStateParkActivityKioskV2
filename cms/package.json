@@ -1,0 +1,28 @@
+{
+  "name": "MoeyActivityKioskCMS",
+  "description": "CMS made with KeystoneJS",
+  "private": true,
+  "version": "5.0.0",
+  "author": "Seiya Kobayashi",
+  "engines": {
+    "node": ">=8.4.0"
+  },
+  "scripts": {
+    "dev:setup": "cross-env NODE_ENV=development DISABLE_LOGGING=true PORT=8011 SETUP=true keystone dev",
+    "dev": "cross-env NODE_ENV=development DISABLE_LOGGING=true PORT=8011 keystone dev",
+    "build": "cross-env NODE_ENV=production PORT=8011 keystone build",
+    "start": "cross-env NODE_ENV=production PORT=8011 keystone start"
+  },
+  "dependencies": {
+    "@keystonejs/adapter-mongoose": "^5.0.0",
+    "@keystonejs/app-admin-ui": "^5.0.0",
+    "@keystonejs/app-graphql": "^5.0.0",
+    "@keystonejs/app-static": "^5.0.0",
+    "@keystonejs/auth-password": "^5.0.0",
+    "@keystonejs/fields": "^5.0.0",
+    "@keystonejs/fields-wysiwyg-tinymce": "^5.0.1",
+    "@keystonejs/file-adapters": "^5.1.0",
+    "@keystonejs/keystone": "^5.0.0",
+    "cross-env": "^5.2.0"
+  }
+}
