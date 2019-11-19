@@ -1,10 +1,11 @@
 <template>
   <div
-    class="default-layout"
+    v-if="generalSettings && activities && activityColors"
     :style="{
-      backgroundColor: generalSettings.backgroundColor.hex,
-      color: generalSettings.textColor.hex,
+      backgroundColor: generalSettings.backgroundColor,
+      color: generalSettings.textColor,
     }"
+    class="default-layout"
   >
     <nuxt class="page" />
   </div>
@@ -15,14 +16,15 @@ import { mapState, mapActions } from 'vuex';
 
 export default {
   computed: {
-    ...mapState(['generalSettings', 'activities']),
+    ...mapState(['generalSettings', 'activities', 'activityColors']),
   },
   created () {
     this.fetchGeneralSettings();
     this.fetchActivities();
+    this.fetchActivityColors();
   },
   methods: {
-    ...mapActions(['fetchGeneralSettings', 'fetchActivities']),
+    ...mapActions(['fetchGeneralSettings', 'fetchActivities', 'fetchActivityColors']),
   },
 };
 </script>

@@ -9,14 +9,8 @@ export default {
     activityPageTitle () {
       return this.activity.pageTitle;
     },
-    activityMainColor () {
-      return this.activity.mainColor.hex;
-    },
-    activitySubColor () {
-      return this.activity.subColor.hex;
-    },
-    activityIconFilename () {
-      return this.activity.iconFilename;
+    activityIconUrl () {
+      return this.activity.svgIcon.publicUrl;
     },
     activityTabItems () {
       return this.activity.tabItems;

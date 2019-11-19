@@ -1,7 +1,7 @@
 <template>
   <div class="detail-main-page-wrapper">
-    <div class="top-left-gap-filler" :style="topLeftGapFillerStyle" />
-    <div class="detail-main-page" :style="pageStyle">
+    <div :style="topLeftGapFillerStyle" class="top-left-gap-filler" />
+    <div :style="pageStyle" class="detail-main-page">
       page
     </div>
   </div>

@@ -3,7 +3,9 @@
     <DetailSideNavActivityListItem
       v-for="(activity, index) in activities"
       :key="activity.id"
-      :activity="activity"
+      :label="activity.buttonLabel"
+      :icon-url="activity.svgIcon.publicUrl"
+      :main-color="activityColors[index] && activityColors[index].mainColor"
       :first-tab="index === 0"
       :selected="activity.id === selectedActivityId"
       @click="selectActivity(activity.id)"
@@ -12,15 +14,15 @@
 </template>
 
 <script>
-import DetailSideNavActivityListItem from '@comps/detail/DetailSideNavActivityListItem';
 import { mapState, mapMutations } from 'vuex';
+import DetailSideNavActivityListItem from './DetailSideNavActivityListItem';
 
 export default {
   components: {
     DetailSideNavActivityListItem,
   },
   computed: {
-    ...mapState(['activities', 'selectedActivityId']),
+    ...mapState(['activities', 'selectedActivityId', 'activityColors']),
   },
   methods: {
     ...mapMutations(['selectActivity']),

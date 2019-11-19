@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import DetailSideNav from '@comps/detail/DetailSideNav';
+import DetailSideNav from '@comps/detail/side-nav/DetailSideNav';
 import DetailMain from '@comps/detail/DetailMain';
 
 export default {

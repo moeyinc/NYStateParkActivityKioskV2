@@ -6,6 +6,9 @@ export default {
     state.activities = activities;
     state.selectedActivityId = activities[0].id;
   },
+  updateActivityColors (state, activityColors) {
+    state.activityColors = activityColors;
+  },
   selectActivity (state, id) {
     state.selectedActivityId = id;
   },

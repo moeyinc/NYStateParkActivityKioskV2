@@ -1,13 +1,13 @@
 <template>
   <div :class="['detail-main-tab-list-item', {selected}]" @click="$emit('click')">
     <div class="tab-edge left">
-      <div class="inner" :style="leftTabEdgeInnerStyle" />
+      <div :style="leftTabEdgeInnerStyle" class="inner" />
     </div>
-    <div class="tab" :style="tabStyle">
+    <div :style="tabStyle" class="tab">
       {{ label }}
     </div>
     <div class="tab-edge right">
-      <div class="inner" :style="rightTabEdgeInnerStyle" />
+      <div :style="rightTabEdgeInnerStyle" class="inner" />
     </div>
   </div>
 </template>

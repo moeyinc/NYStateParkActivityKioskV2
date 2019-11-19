@@ -6,7 +6,7 @@
       :label="tab.tabLabel"
       :main-color="mainColor"
       :sub-color="subColor"
-      :firstTab="index === 0"
+      :first-tab="index === 0"
       :selected="index === selectedTabIndex"
       @click="$emit('select-tab', index)"
     />

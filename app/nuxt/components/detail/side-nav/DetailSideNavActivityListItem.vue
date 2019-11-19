@@ -6,28 +6,28 @@
     @mouseleave="active = false"
     @click="$emit('click')"
   >
-    <div class="tab-edge upper" :style="tabEdgeStyle">
-      <div class="inner" :style="upperTabEdgeInnerStyle" />
+    <div :style="tabEdgeStyle" class="tab-edge upper">
+      <div :style="upperTabEdgeInnerStyle" class="inner" />
     </div>
-    <div class="tab" :style="tabStyle">
+    <div :style="tabStyle" class="tab">
       <div class="svg-wrapper">
         <simple-svg
-          :src="require('@media/icons/' + activityIconFilename)"
-          fill-class-name="fill-to-change"
+          :src="iconUrl"
           :fill="svgColor"
-          stroke-class-name="stroke-to-change"
           :stroke="svgColor"
+          fill-class-name="fill-to-change"
+          stroke-class-name="stroke-to-change"
           height="60%"
         />
       </div>
       <div class="label-wrapper">
-        <div class="button-label" :style="labelStyle">
-          {{ activityButtonLabel }}
+        <div :style="labelStyle" class="button-label">
+          {{ label }}
         </div>
       </div>
     </div>
-    <div class="tab-edge lower" :style="tabEdgeStyle">
-      <div class="inner" :style="lowerTabEdgeInnerStyle" />
+    <div :style="tabEdgeStyle" class="tab-edge lower">
+      <div :style="lowerTabEdgeInnerStyle" class="inner" />
     </div>
   </div>
 </template>
@@ -39,9 +39,17 @@ import activityMixin from '@/mixins/activityMixin';
 export default {
   mixins: [activityMixin],
   props: {
-    activity: {
-      type: Object,
-      default: null,
+    label: {
+      type: String,
+      default: '',
+    },
+    iconUrl: {
+      type: String,
+      default: '',
+    },
+    mainColor: {
+      type: String,
+      default: '',
     },
     firstTab: {
       type: Boolean,
@@ -59,28 +67,28 @@ export default {
     ...mapState(['generalSettings']),
     tabStyle () {
       return {
-        backgroundColor: this.active ? 'white' : this.activityMainColor,
+        backgroundColor: this.active ? 'white' : this.mainColor,
       };
     },
     tabEdgeStyle () {
       return {
-        backgroundColor: this.active ? 'white' : this.activityMainColor,
+        backgroundColor: this.active ? 'white' : this.mainColor,
       };
     },
     upperTabEdgeInnerStyle () {
       return {
-        backgroundColor: this.generalSettings.backgroundColor.hex,
+        backgroundColor: this.generalSettings.backgroundColor,
         borderBottomRightRadius: this.selected && !this.firstTab ? '10px' : '0',
       };
     },
     lowerTabEdgeInnerStyle () {
       return {
-        backgroundColor: this.generalSettings.backgroundColor.hex,
+        backgroundColor: this.generalSettings.backgroundColor,
         borderTopRightRadius: this.selected ? '10px' : '0',
       };
     },
     svgColor () {
-      return this.active ? this.activityMainColor : 'white';
+      return this.active ? this.mainColor : 'white';
     },
     labelStyle () {
       return {

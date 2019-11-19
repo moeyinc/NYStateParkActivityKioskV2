@@ -1,105 +1,59 @@
 const { Keystone } = require('@keystonejs/keystone');
 const { PasswordAuthStrategy } = require('@keystonejs/auth-password');
-const { Text, Checkbox, Password, File, Color } = require('@keystonejs/fields');
-const { Wysiwyg } = require('@keystonejs/fields-wysiwyg-tinymce');
 const { GraphQLApp } = require('@keystonejs/app-graphql');
 const { AdminUIApp } = require('@keystonejs/app-admin-ui');
 const { StaticApp } = require('@keystonejs/app-static');
 const { MongooseAdapter: Adapter } = require('@keystonejs/adapter-mongoose');
-const { LocalFileAdapter } = require('@keystonejs/file-adapters');
-const { MEDIA_DIR, MEDIA_URL, PROJECT_NAME } = require('./config');
-const SETUP = (process.env.SETUP === 'true');
+const { SETUP, MEDIA_DIR, MEDIA_URL, PROJECT_NAME } = require('./config');
+const { userListConfig } = require('./schema/user');
+const { generalSettingListConfig, generalSettingPresets } = require('./schema/general-setting');
+const { colorConfig, colorPresets } = require('./schema/color');
+const { activityListConfig, activityPresets } = require('./schema/activity');
+const { mediaListConfig } = require('./schema/media');
 
-const fileAdapter = new LocalFileAdapter({
-  path: MEDIA_URL,
-  src: '.' + MEDIA_DIR,
-});
-
+// create a keystone instance
 const keystone = new Keystone({
   name: PROJECT_NAME,
   secureCookies: false,
   adapter: new Adapter(),
+  onConnect: seedData,
 });
 
-// Access control functions
-const userIsAdmin = ({ authentication: { item: user } }) => Boolean(user && user.isAdmin);
-const userOwnsItem = ({ authentication: { item: user } }) => {
-  if (!user) {
-    return false;
+// create schemas
+keystone.createList('User', userListConfig);
+keystone.createList('Activity', activityListConfig);
+keystone.createList('GeneralSetting', generalSettingListConfig);
+keystone.createList('Medium', mediaListConfig);
+keystone.createList('Color', colorConfig);
+
+// add initial data to DB after connected to it
+function seedData() {
+  if (SETUP) {
+    console.log('\n[SETUP] Seeding initial data for MOEY Activity Kiosk... ' + SETUP);
   }
-  return { id: user.id };
-};
-const userIsAdminOrOwner = auth => {
-  const isAdmin = access.userIsAdmin(auth);
-  const isOwner = access.userOwnsItem(auth);
-  return isAdmin ? isAdmin : isOwner;
-};
-const access = { userIsAdmin, userOwnsItem, userIsAdminOrOwner };
+  if (SETUP === 'all' || SETUP === 'general') keystone.executeQuery(mutationFactory('GeneralSettings', generalSettingPresets));
+  if (SETUP === 'all' || SETUP === 'activities') keystone.executeQuery(mutationFactory('Activities', activityPresets));
+  if (SETUP === 'all' || SETUP === 'colors') keystone.executeQuery(mutationFactory('Colors', colorPresets));
 
-keystone.createList('User', {
-  fields: {
-    name: { type: Text },
-    email: {
-      type: Text,
-      isUnique: true,
-    },
-    isAdmin: { type: Checkbox },
-    password: {
-      type: Password,
-    },
-  },
-  access: {
-    read: SETUP || access.userIsAdminOrOwner,
-    update: SETUP || access.userIsAdminOrOwner,
-    create: SETUP || access.userIsAdmin,
-    delete: SETUP || access.userIsAdmin,
-    auth: !SETUP,
-  },
-});
+  function mutationFactory(listNamePlural, dataQuery) {
+    return `mutation { create${listNamePlural}(data: ${dataQuery}) {id} }`;
+  }
+}
 
-keystone.createList('Activity', {
-  fields: {
-    buttonLabel: { type: Text },
-    pageTitle: { type: Text },
-    mainColor: { type: Color },
-    subColor: { type: Color },
-    svgIcon: {
-      type: File,
-      adapter: fileAdapter,
-    },
-    description: {
-      type: Wysiwyg,
-      label: 'Description -- when inserting an image, set the source as ' + MEDIA_URL + '/[image-filename-found-in-the-Image-entry]',
-    },
-  },
-  labelField: 'buttonLabel',
-});
-
-keystone.createList('Image', {
-  fields: {
-    name: { type: Text },
-    file: {
-      type: File,
-      adapter: fileAdapter,
-      isRequired: true,
-    },
-    caption: { type: Text },
-  },
-  labelField: 'name',
-});
-
+// set up authentication strategy
 const authStrategy = keystone.createAuthStrategy({
   type: PasswordAuthStrategy,
   list: 'User',
 });
 
+// run GraphQL app, AdminUI app, and media server app
 module.exports = {
   keystone,
   apps: [
     new GraphQLApp(),
     new AdminUIApp({
       enableDefaultRoute: true,
-      authStrategy: !SETUP && authStrategy,
+      authStrategy: !Boolean(SETUP) && authStrategy,
     }),
     new StaticApp({
       path: MEDIA_DIR,

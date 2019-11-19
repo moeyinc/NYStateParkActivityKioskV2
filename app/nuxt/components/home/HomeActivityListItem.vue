@@ -1,40 +1,45 @@
 <template>
   <div
-    class="home-activity-list-item"
     :style="buttonStyle"
     @mousedown="active = true"
     @mouseup="active = false"
     @mouseleave="active = false"
     @click="$emit('click')"
+    class="home-activity-list-item"
   >
     <div class="inner">
       <simple-svg
-        :src="require('@media/icons/' + activityIconFilename)"
-        fill-class-name="fill-to-change"
+        :src="iconUrl"
         :fill="svgColor"
-        stroke-class-name="stroke-to-change"
         :stroke="svgColor"
         :height="svgHeight"
+        fill-class-name="fill-to-change"
+        stroke-class-name="stroke-to-change"
       />
       <div
-        class="button-label"
         :style="labelStyle"
+        class="button-label"
       >
-        {{ activityButtonLabel }}
+        {{ label }}
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import activityMixin from '@/mixins/activityMixin';
-
 export default {
-  mixins: [activityMixin],
   props: {
-    activity: {
-      type: Object,
-      default: null,
+    label: {
+      type: String,
+      default: '',
+    },
+    iconUrl: {
+      type: String,
+      default: '',
+    },
+    mainColor: {
+      type: String,
+      default: '',
     },
     buttonWidth: {
       type: Number,
@@ -58,11 +63,11 @@ export default {
         width: this.buttonWidth + 'px',
         height: this.buttonHeight + 'px',
         margin: this.buttonMargin,
-        backgroundColor: this.active ? 'white' : this.activityMainColor,
+        backgroundColor: this.active ? 'white' : this.mainColor,
       };
     },
     svgColor () {
-      return this.active ? this.activityMainColor : 'white';
+      return this.active ? this.mainColor : 'white';
     },
     svgHeight () {
       return (this.buttonHeight * 0.6) + 'px';

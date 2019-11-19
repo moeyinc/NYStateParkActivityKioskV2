@@ -26,7 +26,7 @@ export default {
       return this.generalSettings.kioskTitle;
     },
     showParkLogo () {
-      return this.generalSettings.showParkLogo;
+      return !this.generalSettings.hideParkLogo;
     },
   },
 };

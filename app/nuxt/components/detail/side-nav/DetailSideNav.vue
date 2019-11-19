@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import DetailSideNavActivityList from '@comps/detail/DetailSideNavActivityList';
+import DetailSideNavActivityList from './DetailSideNavActivityList';
 
 export default {
   components: {

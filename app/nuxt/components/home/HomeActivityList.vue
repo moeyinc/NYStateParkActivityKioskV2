@@ -2,9 +2,11 @@
   <div class="home-activity-list">
     <div class="container">
       <HomeActivityListItem
-        v-for="activity in activities"
+        v-for="(activity, index) in activities"
         :key="activity.id"
-        :activity="activity"
+        :label="activity.buttonLabel"
+        :icon-url="activity.svgIcon.publicUrl"
+        :main-color="activityColors[index] && activityColors[index].mainColor"
         :button-width="buttonWidth"
         :button-height="buttonHeight"
         :button-margin="buttonMargin"
@@ -22,7 +24,7 @@ export default {
     HomeActivityListItem,
   },
   computed: {
-    ...mapState(['activities']),
+    ...mapState(['activities', 'activityColors']),
     buttonWidth () {
       switch (this.activities.length) {
         case 15:

@@ -1,23 +1,25 @@
 <template>
   <main>
-    <div class="top-left-gap-filler" :style="topLeftGapFillerStyle" />
-    <div class="base" :style="baseStyle">
+    <div :style="topLeftGapFillerStyle" class="top-left-gap-filler" />
+    <div :style="baseStyle" class="base">
       <DetailMainTitle
         :title="selectedActivity.pageTitle"
-        :icon-filename="selectedActivity.iconFilename"
+        :icon-url="selectedActivity.svgIcon && selectedActivity.svgIcon.publicUrl"
       />
       <DetailMainTabList
+        v-if="selectedActivity.tabItems"
         :tabs="selectedActivity.tabItems"
-        :main-color="selectedActivity.mainColor.hex"
-        :sub-color="selectedActivity.subColor.hex"
+        :main-color="selectedActivityColor.mainColor"
+        :sub-color="selectedActivityColor.subColor"
         :selected-tab-index="selectedTabIndex"
         @select-tab="(index) => selectedTabIndex = index"
       />
       <DetailMainPage
+        v-if="false"
         :selected-tab="selectedActivity.tabItems[selectedTabIndex]"
         :is-first-tab-selected="selectedTabIndex === 0"
-        :main-color="selectedActivity.mainColor.hex"
-        :sub-color="selectedActivity.subColor.hex"
+        :main-color="selectedActivityColor.mainColor"
+        :sub-color="selectedActivityColor.subColor"
       />
     </div>
   </main>
@@ -39,19 +41,19 @@ export default {
     selectedTabIndex: 0,
   }),
   computed: {
-    ...mapState(['activities', 'selectedActivityId']),
-    ...mapGetters(['selectedActivity']),
+    ...mapState(['activities', 'selectedActivityId', 'activityColors']),
+    ...mapGetters(['selectedActivity', 'selectedActivityColor']),
     isFirstActivitySelected () {
       return this.activities[0].id === this.selectedActivityId;
     },
     topLeftGapFillerStyle () {
       return {
-        backgroundColor: this.activities[0].mainColor.hex,
+        backgroundColor: this.selectedActivityColor.mainColor,
       };
     },
     baseStyle () {
       return {
-        backgroundColor: this.selectedActivity.mainColor.hex,
+        backgroundColor: this.selectedActivityColor.mainColor,
         borderRadius: this.isFirstActivitySelected ? '0 20px 20px 20px' : '20px',
       };
     },
