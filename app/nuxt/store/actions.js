@@ -1,5 +1,3 @@
-// import { activities } from '@/test-data';
-
 export default {
   fetchGeneralSettings ({ commit }) {
     this.$axios.post('/', {

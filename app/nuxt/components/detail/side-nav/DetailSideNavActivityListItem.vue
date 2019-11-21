@@ -34,10 +34,8 @@
 
 <script>
 import { mapState } from 'vuex';
-import activityMixin from '@/mixins/activityMixin';
 
 export default {
-  mixins: [activityMixin],
   props: {
     label: {
       type: String,
