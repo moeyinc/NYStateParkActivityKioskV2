@@ -1,7 +1,7 @@
 const { SETUP } = require('../config');
 const access = require('../helpers/access-control');
 const { Text, Checkbox, Password } = require('@keystonejs/fields');
-const { atTracking, byTracking } = require('@keystonejs/list-plugins');
+const { atTracking } = require('@keystonejs/list-plugins');
 
 module.exports = {
   userListConfig: {
@@ -22,7 +22,7 @@ module.exports = {
       defaultSort: 'name',
     },
     access: {
-      read: Boolean(SETUP) || access.userIsAdminOrOwner,
+      read: true,
       update: Boolean(SETUP) || access.userIsAdminOrOwner,
       create: Boolean(SETUP) || access.userIsAdmin,
       delete: Boolean(SETUP) || access.userIsAdmin,
@@ -30,7 +30,6 @@ module.exports = {
     },
     plugins: [
       atTracking(),
-      byTracking(),
     ],
   },
 };

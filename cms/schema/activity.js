@@ -1,33 +1,31 @@
 const { localFileAdapter } = require('../helpers/file-adapter');
-const { Text, Checkbox, File, Color, Integer } = require('@keystonejs/fields');
-const { Wysiwyg } = require('@keystonejs/fields-wysiwyg-tinymce');
-const { MEDIA_URL } = require('../config');
-const { atTracking, byTracking } = require('@keystonejs/list-plugins');
+const { Text, Checkbox, File, Integer, Relationship } = require('@keystonejs/fields');
+const { atTracking } = require('@keystonejs/list-plugins');
 
 module.exports = {
   activityListConfig: {
     fields: {
       enabled: { type: Checkbox, defaultValue: true },
       order: { type: Integer, isRequired: true },
-      buttonLabel: { type: Text },
-      pageTitle: { type: Text },
+      buttonLabel: { type: Text, isRequired: true },
+      pageTitle: { type: Text, isRequired: true },
       svgIcon: {
         type: File,
         adapter: localFileAdapter,
       },
-      description: {
-        type: Wysiwyg,
-        label: 'Description -- to insert an image, set the source as ' + MEDIA_URL + '/[image-filename-found-in-the-Media-entry]',
+      tabItems: {
+        type: Relationship,
+        ref: 'TabItem.activity',
+        many: true,
       },
     },
     labelField: 'buttonLabel',
     adminConfig: {
-      defaultColumns: 'buttonLabel, order, enabled, updatedBy, updatedAt',
+      defaultColumns: 'buttonLabel, order, enabled, updatedAt',
       defaultSort: 'order',
     },
     plugins: [
       atTracking(),
-      byTracking(),
     ],
   },
   activityPresets: `[

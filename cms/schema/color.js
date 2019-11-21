@@ -1,10 +1,10 @@
 const { SETUP } = require('../config');
 const access = require('../helpers/access-control');
 const { Color, Integer } = require('@keystonejs/fields');
-const { atTracking, byTracking } = require('@keystonejs/list-plugins');
+const { atTracking } = require('@keystonejs/list-plugins');
 
 module.exports = {
-  colorConfig: {
+  colorListConfig: {
     fields: {
       order: { type: Integer, isRequired: true },
       mainColor: { type: Color },
@@ -24,7 +24,6 @@ module.exports = {
     },
     plugins: [
       atTracking(),
-      byTracking(),
     ],
   },
   colorPresets: `[

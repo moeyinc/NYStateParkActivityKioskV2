@@ -7,9 +7,10 @@ const { MongooseAdapter: Adapter } = require('@keystonejs/adapter-mongoose');
 const { SETUP, MEDIA_DIR, MEDIA_URL, PROJECT_NAME } = require('./config');
 const { userListConfig } = require('./schema/user');
 const { generalSettingListConfig, generalSettingPresets } = require('./schema/general-setting');
-const { colorConfig, colorPresets } = require('./schema/color');
+const { colorListConfig, colorPresets } = require('./schema/color');
 const { activityListConfig, activityPresets } = require('./schema/activity');
 const { mediaListConfig } = require('./schema/media');
+const { tabItemListConfig } = require('./schema/tab-item');
 
 // create a keystone instance
 const keystone = new Keystone({
@@ -24,7 +25,8 @@ keystone.createList('User', userListConfig);
 keystone.createList('Activity', activityListConfig);
 keystone.createList('GeneralSetting', generalSettingListConfig);
 keystone.createList('Medium', mediaListConfig);
-keystone.createList('Color', colorConfig);
+keystone.createList('Color', colorListConfig);
+keystone.createList('TabItem', tabItemListConfig);
 
 // add initial data to DB after connected to it
 function seedData() {

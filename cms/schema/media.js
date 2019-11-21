@@ -1,6 +1,6 @@
 const { localFileAdapter } = require('../helpers/file-adapter');
 const { Text, File } = require('@keystonejs/fields');
-const { atTracking, byTracking } = require('@keystonejs/list-plugins');
+const { atTracking } = require('@keystonejs/list-plugins');
 
 module.exports = {
   mediaListConfig: {
@@ -17,12 +17,11 @@ module.exports = {
     plural: 'Media',
     labelField: 'name',
     adminConfig: {
-      defaultColumns: 'createdBy, updatedAt, createdAt',
+      defaultColumns: 'updatedAt, createdAt',
       defaultSort: 'updatedAt',
     },
     plugins: [
       atTracking(),
-      byTracking(),
     ],
   },
 };

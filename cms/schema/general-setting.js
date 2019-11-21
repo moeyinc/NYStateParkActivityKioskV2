@@ -1,7 +1,7 @@
 const { SETUP } = require('../config');
 const access = require('../helpers/access-control');
 const { Text, Checkbox, Color, Integer, DateTime } = require('@keystonejs/fields');
-const { atTracking, byTracking } = require('@keystonejs/list-plugins');
+const { atTracking } = require('@keystonejs/list-plugins');
 
 module.exports = {
   generalSettingListConfig: {
@@ -16,7 +16,7 @@ module.exports = {
     },
     labelField: 'presetName',
     adminConfig: {
-      defaultColumns: 'presetName, active, createdBy, updatedAt',
+      defaultColumns: 'presetName, active, updatedAt',
       defaultSort: 'presetName',
     },
     access: {
@@ -28,7 +28,6 @@ module.exports = {
     },
     plugins: [
       atTracking(),
-      byTracking(),
     ],
   },
   generalSettingPresets: `[
