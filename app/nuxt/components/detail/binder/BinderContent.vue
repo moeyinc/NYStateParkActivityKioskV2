@@ -2,7 +2,7 @@
   <div class="detail-main-page-wrapper">
     <div :style="topLeftGapFillerStyle" class="top-left-gap-filler" />
     <div :style="pageStyle" class="detail-main-page">
-      page
+      <div v-html="content" />
     </div>
   </div>
 </template>
@@ -10,9 +10,9 @@
 <script>
 export default {
   props: {
-    selectedTab: {
-      type: Object,
-      default: null,
+    content: {
+      type: String,
+      default: '',
     },
     isFirstTabSelected: {
       type: Boolean,
@@ -37,6 +37,15 @@ export default {
       return {
         borderRadius: this.isFirstTabSelected ? '0 20px 20px 20px' : '20px',
       };
+    },
+    imgSrcReplacedContent () {
+      // regex here
+      return '';
+    },
+  },
+  watch: {
+    content (newVal) {
+      console.log('content', newVal);
     },
   },
 };

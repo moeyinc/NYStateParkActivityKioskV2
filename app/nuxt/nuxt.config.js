@@ -32,6 +32,7 @@ export default {
   */
   plugins: [
     '@/plugins/vue-simple-svg',
+    '@/plugins/inject-utils',
   ],
   /*
   ** Nuxt.js dev-modules

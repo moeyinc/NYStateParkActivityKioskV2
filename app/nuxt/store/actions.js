@@ -32,7 +32,7 @@ export default {
         }
       `,
     }).then((res) => {
-      const activityColors = res.data.data.allColors.sort(sortByOrder);
+      const activityColors = res.data.data.allColors.sort(this.$sortByOrder);
       commit('updateActivityColors', activityColors);
     });
   },
@@ -53,23 +53,19 @@ export default {
               filename
               originalFilename
             }
+            tabItems {
+              id
+              enabled
+              tabLabel
+              content
+              order
+            }
           }
         }
       `,
     }).then((res) => {
-      const activities = res.data.data.allActivities.sort(sortByOrder);
+      const activities = res.data.data.allActivities.sort(this.$sortByOrder);
       commit('updateActivities', activities);
     });
   },
 };
-
-function sortByOrder (a, b) {
-  if (typeof a.order !== 'number' || typeof b.order !== 'number') return 0;
-  if (a.order < b.order) {
-    return 1;
-  } else if (a.order > b.order) {
-    return -1;
-  } else {
-    return 0;
-  }
-}

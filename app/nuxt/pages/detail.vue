@@ -2,19 +2,19 @@
   <div class="detail-page">
     <div class="container">
       <DetailSideNav />
-      <DetailMain />
+      <DetailMainContainer />
     </div>
   </div>
 </template>
 
 <script>
 import DetailSideNav from '@comps/detail/side-nav/DetailSideNav';
-import DetailMain from '@comps/detail/DetailMain';
+import DetailMainContainer from '@comps/detail/DetailMainContainer';
 
 export default {
   components: {
     DetailSideNav,
-    DetailMain,
+    DetailMainContainer,
   },
 };
 </script>

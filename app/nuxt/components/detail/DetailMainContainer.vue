@@ -2,53 +2,34 @@
   <main>
     <div :style="topLeftGapFillerStyle" class="top-left-gap-filler" />
     <div :style="baseStyle" class="base">
-      <DetailMainTitle
+      <PageTitle
         :title="selectedActivity.pageTitle"
         :icon-url="selectedActivity.svgIcon && selectedActivity.svgIcon.publicUrl"
       />
-      <DetailMainTabList
-        v-if="selectedActivity.tabItems"
-        :tabs="selectedActivity.tabItems"
-        :main-color="selectedActivityColor.mainColor"
-        :sub-color="selectedActivityColor.subColor"
-        :selected-tab-index="selectedTabIndex"
-        @select-tab="(index) => selectedTabIndex = index"
-      />
-      <DetailMainPage
-        v-if="false"
-        :selected-tab="selectedActivity.tabItems[selectedTabIndex]"
-        :is-first-tab-selected="selectedTabIndex === 0"
-        :main-color="selectedActivityColor.mainColor"
-        :sub-color="selectedActivityColor.subColor"
-      />
+      <Binder />
     </div>
   </main>
 </template>
 
 <script>
 import { mapState, mapGetters } from 'vuex';
-import DetailMainTitle from './DetailMainTitle';
-import DetailMainTabList from './DetailMainTabList';
-import DetailMainPage from './page/DetailMainPage';
+import Binder from '@comps/detail/binder/Binder';
+import PageTitle from './PageTitle';
 
 export default {
   components: {
-    DetailMainTitle,
-    DetailMainTabList,
-    DetailMainPage,
+    PageTitle,
+    Binder,
   },
-  data: () => ({
-    selectedTabIndex: 0,
-  }),
   computed: {
-    ...mapState(['activities', 'selectedActivityId', 'activityColors']),
+    ...mapState(['selectedActivityId', 'activityColors', 'activities']),
     ...mapGetters(['selectedActivity', 'selectedActivityColor']),
     isFirstActivitySelected () {
       return this.activities[0].id === this.selectedActivityId;
     },
     topLeftGapFillerStyle () {
       return {
-        backgroundColor: this.selectedActivityColor.mainColor,
+        backgroundColor: this.activityColors[0].mainColor,
       };
     },
     baseStyle () {

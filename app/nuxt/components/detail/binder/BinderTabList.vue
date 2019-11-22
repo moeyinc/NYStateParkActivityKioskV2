@@ -1,8 +1,8 @@
 <template>
   <nav>
-    <DetailMainTabListItem
+    <BinderTabListItem
       v-for="(tab, index) in tabs"
-      :key="index"
+      :key="tab.id"
       :label="tab.tabLabel"
       :main-color="mainColor"
       :sub-color="subColor"
@@ -14,11 +14,11 @@
 </template>
 
 <script>
-import DetailMainTabListItem from './DetailMainTabListItem';
+import BinderTabListItem from './BinderTabListItem';
 
 export default {
   components: {
-    DetailMainTabListItem,
+    BinderTabListItem,
   },
   props: {
     tabs: {

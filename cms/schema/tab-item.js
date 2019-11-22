@@ -1,18 +1,21 @@
 const { Text, Checkbox, Relationship, Integer } = require('@keystonejs/fields');
 const { Wysiwyg } = require('@keystonejs/fields-wysiwyg-tinymce');
-const { MEDIA_URL } = require('../config');
 const { atTracking } = require('@keystonejs/list-plugins');
 
 module.exports = {
   tabItemListConfig: {
     fields: {
-      enabled: { type: Checkbox, defaultValue: true },
-      order: { type: Integer, isRequired: true },
-      tabLabel: { type: Text, isRequired: true },
       activity: {
         type: Relationship,
         ref: 'Activity.tabItems',
         isRequired: true,
+      },
+      tabLabel: { type: Text, isRequired: true },
+      order: { type: Integer, isRequired: true },
+      enabled: { type: Checkbox, defaultValue: true },
+      content: {
+        type: Wysiwyg,
+        label: 'Content -- to insert an image, set the source as ../../media/[image-filename-found-in-the-Media-entry]',
       },
       activityLabel: {
         type: Text,
@@ -26,7 +29,10 @@ module.exports = {
             if (resolvedData.activityLabel) return;
             if (!resolvedData.activity) return '';
             return new Promise((resolve, reject) => {
-              if (existingItem.activity) {
+              if (
+                existingItem && existingItem.activity
+                && existingItem.activity.toString() !== resolvedData.activity.toString()
+              ) {
                 disconnectTabItemFromOldActivity()
                   .then(setActivityLabel)
                   .then((result) => {
@@ -56,10 +62,6 @@ module.exports = {
             });
           },
         },
-      },
-      description: {
-        type: Wysiwyg,
-        label: 'Description -- to insert an image, set the source as ' + MEDIA_URL + '/[image-filename-found-in-the-Media-entry]',
       },
     },
     labelResolver: (item) => {
