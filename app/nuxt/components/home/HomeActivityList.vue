@@ -10,13 +10,14 @@
         :button-width="buttonWidth"
         :button-height="buttonHeight"
         :button-margin="buttonMargin"
+        @click="onActivityButtonClick(activity.id)"
       />
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 import HomeActivityListItem from './HomeActivityListItem';
 
 export default {
@@ -76,6 +77,13 @@ export default {
       } else {
         return '15px 20px';
       }
+    },
+  },
+  methods: {
+    ...mapMutations(['selectActivity']),
+    onActivityButtonClick (activityId) {
+      this.selectActivity(activityId);
+      this.$router.push('/detail');
     },
   },
 };

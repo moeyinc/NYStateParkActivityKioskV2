@@ -79,6 +79,7 @@ export default {
     align-items: center
     font-size: 40px
     font-family: $title-font
+    padding-top: 5px
   .tab-edge
     width: 20px
     height: 100%

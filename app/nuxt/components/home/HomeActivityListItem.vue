@@ -13,10 +13,12 @@
         :fill="svgColor"
         :stroke="svgColor"
         :height="svgHeight"
+        @load="iconLoaded = true"
         fill-class-name="fill-to-change"
         stroke-class-name="stroke-to-change"
       />
       <div
+        v-show="iconLoaded"
         :style="labelStyle"
         class="button-label"
       >
@@ -56,6 +58,7 @@ export default {
   },
   data: () => ({
     active: false,
+    iconLoaded: false,
   }),
   computed: {
     buttonStyle () {

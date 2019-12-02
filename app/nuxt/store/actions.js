@@ -46,12 +46,7 @@ export default {
             buttonLabel
             pageTitle
             svgIcon {
-              id
               publicUrl
-              path
-              mimetype
-              filename
-              originalFilename
             }
             tabItems {
               id
@@ -59,6 +54,22 @@ export default {
               tabLabel
               content
               order
+              primaryHeaderImage {
+                id
+                name
+                caption
+                file {
+                  publicUrl
+                }
+              }
+              subHeaderImage {
+                id
+                name
+                caption
+                file {
+                  publicUrl
+                }
+              }
             }
           }
         }

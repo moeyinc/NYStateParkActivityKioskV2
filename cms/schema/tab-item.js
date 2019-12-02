@@ -13,8 +13,19 @@ module.exports = {
       tabLabel: { type: Text, isRequired: true },
       order: { type: Integer, isRequired: true },
       enabled: { type: Checkbox, defaultValue: true },
+      primaryHeaderImage: {
+        type: Relationship,
+        ref: 'Medium',
+        label: 'Primary Header Image (optional) -- If set, a large image will be displayed at the top',
+      },
+      subHeaderImage: {
+        type: Relationship,
+        ref: 'Medium',
+        label: 'Sub Header Image (optional) -- If both the primary and sub header images are set, two large images will be displayed at the top',
+      },
       content: {
         type: Wysiwyg,
+        isRequired: true,
         label: 'Content -- to insert an image, set the source as ../../media/[image-filename-found-in-the-Media-entry]',
       },
       activityLabel: {

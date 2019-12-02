@@ -42,6 +42,9 @@ export default {
     '@nuxtjs/eslint-module',
     '@nuxtjs/dotenv',
   ],
+  env: {
+    MEDIA_URL: process.env.MEDIA_URL,
+  },
   /*
   ** Nuxt.js modules
   */
