@@ -1,7 +1,6 @@
 export default {
   methods: {
     displayRipple (event) {
-      console.log('display ripple', event);
       // invalid if it's called from an embedded page in iframe
       if (!window || window !== window.top) return;
 

@@ -12,4 +12,7 @@ export default {
   selectActivity (state, id) {
     state.selectedActivityId = id;
   },
+  updateIsFirstSideNavItemActive (state, value) {
+    state.isFirstSideNavItemActive = value;
+  },
 };

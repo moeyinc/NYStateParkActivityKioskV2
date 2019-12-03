@@ -22,14 +22,14 @@ export default {
     Binder,
   },
   computed: {
-    ...mapState(['selectedActivityId', 'activityColors', 'activities']),
+    ...mapState(['selectedActivityId', 'activityColors', 'activities', 'isFirstSideNavItemActive']),
     ...mapGetters(['selectedActivity', 'selectedActivityColor']),
     isFirstActivitySelected () {
       return this.activities[0].id === this.selectedActivityId;
     },
     topLeftGapFillerStyle () {
       return {
-        backgroundColor: this.activityColors[0].mainColor,
+        backgroundColor: this.isFirstSideNavItemActive ? 'white' : this.activityColors[0].mainColor,
       };
     },
     baseStyle () {
@@ -49,6 +49,7 @@ main
   right: 0
   bottom: 0
   width: 1630px
+  z-index: 100
   .top-left-gap-filler
     position: absolute
     width: 20px

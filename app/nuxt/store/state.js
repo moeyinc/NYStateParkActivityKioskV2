@@ -3,4 +3,5 @@ export default () => ({
   activities: null,
   activityColors: null,
   selectedActivityId: '',
+  isFirstSideNavItemActive: false,
 });

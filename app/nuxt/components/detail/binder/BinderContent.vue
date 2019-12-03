@@ -104,7 +104,7 @@ export default {
   watch: {
     content (newVal) {
       // re-calculate content area height and scrollbar thumb heigt
-      this.$refs['scroll-area-container'].calculateSize();
+      this.$nextTick(this.$refs['scroll-area-container'].calculateSize);
     },
   },
   methods: {

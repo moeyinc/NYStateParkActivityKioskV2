@@ -10,6 +10,7 @@ import HomeHeader from '@comps/home/HomeHeader';
 import HomeActivityList from '@comps/home/HomeActivityList';
 
 export default {
+  transition: 'fade',
   components: {
     HomeHeader,
     HomeActivityList,

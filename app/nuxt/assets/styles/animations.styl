@@ -1,0 +1,12 @@
+$duration = .3s
+
+// fade animation
+.fade-enter-active, .fade-leave-active
+  transition-property: opacity
+  transition-duration: $duration
+
+.fade-enter-active
+  transition-delay: 0s
+
+.fade-enter, .fade-leave-active
+  opacity: 0

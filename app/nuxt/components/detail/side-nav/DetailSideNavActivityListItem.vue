@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 
 export default {
   props: {
@@ -94,6 +94,14 @@ export default {
       };
     },
   },
+  watch: {
+    active (newVal) {
+      if (this.firstTab) this.updateIsFirstSideNavItemActive(newVal);
+    },
+  },
+  methods: {
+    ...mapMutations(['updateIsFirstSideNavItemActive']),
+  },
 };
 </script>
 
@@ -104,8 +112,11 @@ export default {
   height: 75px
   margin-top: -10px
   position: relative
+  // transition: transform 0.2s ease-out
   &.selected
-    z-index: 1000
+    z-index: 10
+  // &:not(.selected)
+  //   transform: translateX(20px)
   .tab
     height: 55px
     border-radius: 27px 0 0 27px
