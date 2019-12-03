@@ -5,6 +5,7 @@
       backgroundColor: generalSettings.backgroundColor,
       color: generalSettings.textColor,
     }"
+    @click="displayRipple"
     class="default-layout"
   >
     <nuxt class="page" />
@@ -13,8 +14,10 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import rippleMixin from '@/mixins/ripple-mixin';
 
 export default {
+  mixins: [rippleMixin],
   computed: {
     ...mapState(['generalSettings', 'activities', 'activityColors']),
   },
