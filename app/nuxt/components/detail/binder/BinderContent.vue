@@ -2,7 +2,11 @@
   <div class="binder-content-wrapper">
     <div :style="topLeftGapFillerStyle" class="top-left-gap-filler" />
     <div :style="binderContentStyle" class="binder-content">
-      <div class="binder-content-inner">
+      <ScrollAreaContainer
+        ref="scroll-area-container"
+        :scroll-speed="200"
+        class="binder-content-inner"
+      >
         <div
           v-if="primaryHeaderImageUrl"
           class="header-image-container"
@@ -22,13 +26,25 @@
         <div class="wysiwyg">
           <div v-html="imgSrcReplacedContent" />
         </div>
-      </div>
+      </ScrollAreaContainer>
+      <ScrollbarContainer
+        @scroll-up="scrollY(-1)"
+        @scroll-down="scrollY(1)"
+        class="scrollbar-container"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import ScrollAreaContainer from '@comps/scrollbar/ScrollAreaContainer';
+import ScrollbarContainer from '@comps/scrollbar/ScrollbarContainer';
+
 export default {
+  components: {
+    ScrollAreaContainer,
+    ScrollbarContainer,
+  },
   props: {
     content: {
       type: String,
@@ -85,6 +101,17 @@ export default {
       };
     },
   },
+  watch: {
+    content (newVal) {
+      // re-calculate content area height and scrollbar thumb heigt
+      this.$refs['scroll-area-container'].calculateSize();
+    },
+  },
+  methods: {
+    scrollY (deltaY) {
+      this.$refs['scroll-area-container'].scroll({ deltaY });
+    },
+  },
 };
 </script>
 
@@ -104,7 +131,7 @@ export default {
     background-color: white
     border-radius: 20px
     padding: 20px 50px 20px 20px
-    overflow: hidden
+    // overflow: hidden
     .binder-content-inner
       padding: 20px
       height: 100%
@@ -122,6 +149,12 @@ export default {
           overflow: hidden;
           &.sub
             width: 500px
+    .scrollbar-container
+      position: absolute
+      top: 20px
+      right: 20px
+      bottom: 20px
+      width: 30px
 </style>
 
 <style lang="stylus">

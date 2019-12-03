@@ -5,9 +5,10 @@
       @click="$router.push('/')"
       class="home-button"
     >
-      <div
-        :style="triangleStyle"
-        class="triangle-left"
+      <ArrowButton
+        :color="generalSettings.textColor"
+        :size="20"
+        direction="left"
       />
       <div class="text">
         MAIN MENU
@@ -18,11 +19,13 @@
 
 <script>
 import { mapState } from 'vuex';
+import ArrowButton from '@comps/common/ArrowButton';
 import DetailSideNavActivityList from './DetailSideNavActivityList';
 
 export default {
   components: {
     DetailSideNavActivityList,
+    ArrowButton,
   },
   computed: {
     ...mapState(['generalSettings']),
@@ -53,23 +56,8 @@ export default {
     align-items: center
     font-family: $title-font
     font-size: 24px
-    padding-left: 30px
+    padding-left: 20px
     .text
-      margin-left: 15px
-      padding-bottom: 4px
-    .triangle-left, .triangle-left:before, .triangle-left:after
-      width:  0.8em
-      height: 0.8em
-      border-top-right-radius: 30%
-    .triangle-left:before, .triangle-left:after
-      content: ''
-      position: absolute
-      background-color: inherit
-    .triangle-left
-      position: relative
-      transform: rotate(90deg) skewX(-30deg) scale(1,.866)
-      &:before
-        transform: rotate(-135deg) skewX(-45deg) scale(1.414,.707) translate(0,-50%)
-      &:after
-        transform: rotate(135deg) skewY(-45deg) scale(.707,1.414) translate(50%)
+      margin-left: 7px
+      padding-top: 3px
 </style>
