@@ -54,8 +54,10 @@ export default {
       return (image && image.file) ? image.file.publicUrl : '';
     },
   },
-  mounted () {
-    console.log('sortedTabItems', this.sortedTabItems);
+  watch: {
+    selectedActivity () {
+      this.selectedTabIndex = 0;
+    },
   },
 };
 </script>

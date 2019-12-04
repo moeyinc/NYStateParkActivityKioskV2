@@ -1,6 +1,7 @@
 <template>
   <div class="scrollbar-container">
     <ArrowButton
+      v-show="isScrollbarVisible"
       :color="generalSettings.textColor"
       :size="20"
       @click="$emit('scroll-up')"
@@ -13,9 +14,11 @@
       :base-border-radius="15"
       :thumb-color="generalSettings.textColor"
       :thumb-border-radius="15"
+      @visibility-changed="(val) => isScrollbarVisible = val"
       class="scrollbar"
     />
     <ArrowButton
+      v-show="isScrollbarVisible"
       :color="generalSettings.textColor"
       :size="20"
       @click="$emit('scroll-down')"
@@ -35,6 +38,9 @@ export default {
     Scrollbar,
     ArrowButton,
   },
+  data: () => ({
+    isScrollbarVisible: true,
+  }),
   computed: {
     ...mapState(['generalSettings']),
   },

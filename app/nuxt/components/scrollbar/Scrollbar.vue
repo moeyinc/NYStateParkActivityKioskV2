@@ -92,6 +92,11 @@ export default {
       return this.display;
     },
   },
+  watch: {
+    displayable (newVal) {
+      this.$emit('visibility-changed', newVal);
+    },
+  },
   mounted () {
     // register this to $root.$refs
     this.registerRef();

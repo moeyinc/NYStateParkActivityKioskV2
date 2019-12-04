@@ -24,7 +24,7 @@
           >
         </div>
         <div class="wysiwyg">
-          <div v-html="imgSrcReplacedContent" />
+          <div v-html="filteredContent" />
         </div>
       </ScrollAreaContainer>
       <ScrollbarContainer
@@ -86,8 +86,10 @@ export default {
         borderRadius: this.isFirstTabSelected ? '0 20px 20px 20px' : '20px',
       };
     },
-    imgSrcReplacedContent () {
-      return this.content.replace('../../media', process.env.MEDIA_URL);
+    filteredContent () {
+      return this.content
+        .replace('../../media', process.env.MEDIA_URL)
+        .replace('<a href', '<a disabled-href');
     },
     primaryHeaderImageStyle () {
       return {
@@ -104,7 +106,10 @@ export default {
   watch: {
     content (newVal) {
       // re-calculate content area height and scrollbar thumb heigt
-      this.$nextTick(this.$refs['scroll-area-container'].calculateSize);
+      this.$nextTick(() => {
+        this.$refs['scroll-area-container'].calculateSize();
+        this.$refs['scroll-area-container'].scrollToY(0);
+      });
     },
   },
   methods: {
