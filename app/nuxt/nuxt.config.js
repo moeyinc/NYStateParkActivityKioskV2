@@ -1,8 +1,8 @@
-import path from 'path';
+const path = require('path');
 require('dotenv').config();
 
-export default {
-  mode: 'universal',
+module.exports = {
+  mode: process.env.BUILD_TARGET === 'electron' ? 'spa' : 'universal',
   /*
   ** Headers of the page
   */
@@ -45,6 +45,7 @@ export default {
   env: {
     MEDIA_URL: process.env.MEDIA_URL,
   },
+  dev: process.env.NODE_ENV === 'DEV',
   /*
   ** Nuxt.js modules
   */
@@ -94,6 +95,13 @@ export default {
       config.resolve.alias['@fonts'] = resolve('assets/fonts');
       config.resolve.alias['@comps'] = resolve('components');
       config.resolve.alias['@media'] = resolve('static/media');
+
+      // electron
+      if (ctx.isClient && process.env.BUILD_TARGET === 'electron') {
+        console.log('building for electron');
+        // config.target = 'electron-renderer';
+        config.output.publicPath = './_nuxt/';
+      }
     },
   },
 };
