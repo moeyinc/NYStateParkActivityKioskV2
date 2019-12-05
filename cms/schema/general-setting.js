@@ -21,7 +21,7 @@ module.exports = {
     },
     access: {
       read: true,
-      update: Boolean(SETUP) || access.userIsAdminOrOwner,
+      update: Boolean(SETUP) || access.userIsAdmin,
       create: Boolean(SETUP) || access.userIsAdmin,
       delete: Boolean(SETUP) || access.userIsAdmin,
       auth: !Boolean(SETUP),

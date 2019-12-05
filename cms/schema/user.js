@@ -1,7 +1,7 @@
 const { SETUP } = require('../config');
 const access = require('../helpers/access-control');
 const { Text, Checkbox, Password } = require('@keystonejs/fields');
-const { atTracking } = require('@keystonejs/list-plugins');
+const { atTracking, byTracking } = require('@keystonejs/list-plugins');
 
 module.exports = {
   userListConfig: {
@@ -11,14 +11,40 @@ module.exports = {
         type: Text,
         isUnique: true,
       },
-      isAdmin: { type: Checkbox },
+      isAdmin: {
+        type: Checkbox,
+        access: {
+          update: access.userIsAdmin,
+        },
+      },
       password: {
         type: Password,
+      },
+      createdByLabel: {
+        type: Text,
+        label: 'Created by',
+        access: {
+          create: false,
+        },
+      },
+    },
+    hooks: {
+      afterChange: async ({ existingItem, updatedItem, actions }) => {
+        // ignore the changes made by this mutation
+        if (existingItem && existingItem.createdByLabel) return;
+
+        // setting createdByLabel
+        const myId = updatedItem.id.toString();
+        const ownerId = updatedItem.createdBy && updatedItem.createdBy.toString();
+        if (!ownerId) return;
+        const result = await actions.query(`query { allUsers(where: { id: "${ownerId}" }) { name } }`);
+        const userName = result.data.allUsers[0].name;
+        actions.query(`mutation { updateUser(id: "${myId}", data: { createdByLabel: "${userName}" }) { id } }`);
       },
     },
     labelField: 'name',
     adminConfig: {
-      defaultColumns: 'createdAt',
+      defaultColumns: 'createdAt, createdByLabel, isAdmin',
       defaultSort: 'name',
     },
     access: {
@@ -30,6 +56,7 @@ module.exports = {
     },
     plugins: [
       atTracking(),
+      byTracking(),
     ],
   },
 };
