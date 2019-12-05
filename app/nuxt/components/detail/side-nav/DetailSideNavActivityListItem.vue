@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="['side-nav-activity-list-item', {selected}]"
+    :class="['side-nav-activity-list-item', {selected, 'first-tab': firstTab}]"
     @mousedown="active = true"
     @mouseup="active = false"
     @mouseleave="active = false"
@@ -10,6 +10,10 @@
       <div :style="upperTabEdgeInnerStyle" class="inner" />
     </div>
     <div :style="tabStyle" class="tab">
+      <div
+        v-if="firstTab"
+        class="box-shadow-adjustment"
+      />
       <div class="svg-wrapper">
         <simple-svg
           :src="iconUrl"
@@ -112,16 +116,28 @@ export default {
   height: 75px
   margin-top: -10px
   position: relative
-  // transition: transform 0.2s ease-out
   &.selected
     z-index: 10
-  // &:not(.selected)
-  //   transform: translateX(20px)
+  &:not(.selected)
+    &:not(.first-tab)
+      .tab
+        box-shadow: rgba(0, 0, 0, 0.2) -10px 0px 10px 0px inset
+    &.first-tab
+      .tab
+        .box-shadow-adjustment
+          box-shadow: -10px 0 10px -6px rgba(0,0,0,.2) inset
   .tab
     height: 55px
     border-radius: 27px 0 0 27px
     padding: 0 10px 0 15px
     display: flex
+    position: relative
+    .box-shadow-adjustment
+      position: absolute
+      height: 35px
+      width: 15px
+      right: 0
+      bottom: 0
     .svg-wrapper
       flex-grow: 0
       height: 100%
