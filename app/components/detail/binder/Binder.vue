@@ -9,9 +9,7 @@
       @select-tab="(index) => selectedTabIndex = index"
     />
     <BinderContent
-      :content="content"
-      :primary-header-image-url="primaryHeaderImageUrl"
-      :sub-header-image-url="subHeaderImageUrl"
+      :selected-tab="selectedTab"
       :is-first-tab-selected="selectedTabIndex === 0"
       :main-color="selectedActivityColor.mainColor"
       :sub-color="selectedActivityColor.subColor"
@@ -41,17 +39,6 @@ export default {
     },
     selectedTab () {
       return this.sortedTabItems[this.selectedTabIndex];
-    },
-    content () {
-      return this.selectedTab && this.selectedTab.content;
-    },
-    primaryHeaderImageUrl () {
-      const image = this.selectedTab && this.selectedTab.primaryHeaderImage;
-      return (image && image.file) ? image.file.publicUrl : '';
-    },
-    subHeaderImageUrl () {
-      const image = this.selectedTab && this.selectedTab.subHeaderImage;
-      return (image && image.file) ? image.file.publicUrl : '';
     },
   },
   watch: {

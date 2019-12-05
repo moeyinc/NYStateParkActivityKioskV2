@@ -7,25 +7,14 @@
         :scroll-speed="200"
         class="binder-content-inner"
       >
-        <div
-          v-if="primaryHeaderImageUrl"
-          class="header-image-container"
-        >
-          <img
-            :src="primaryHeaderImageUrl"
-            :style="primaryHeaderImageStyle"
-            class="primary header-image"
-          >
-          <img
-            v-if="subHeaderImageUrl"
-            :src="subHeaderImageUrl"
-            :style="subHeaderImageStyle"
-            class="sub header-image"
-          >
-        </div>
-        <div class="wysiwyg">
-          <div v-html="filteredContent" />
-        </div>
+        <BinderContentGeneral
+          :content="selectedTab.content"
+          :primary-header-image-url="primaryHeaderImageUrl"
+          :sub-header-image-url="subHeaderImageUrl"
+          :main-color="mainColor"
+          :sub-color="subColor"
+          :text-color="textColor"
+        />
       </ScrollAreaContainer>
       <ScrollbarContainer
         @scroll-up="scrollY(-1)"
@@ -39,24 +28,18 @@
 <script>
 import ScrollAreaContainer from '@comps/scrollbar/ScrollAreaContainer';
 import ScrollbarContainer from '@comps/scrollbar/ScrollbarContainer';
+import BinderContentGeneral from './BinderContentGeneral';
 
 export default {
   components: {
     ScrollAreaContainer,
     ScrollbarContainer,
+    BinderContentGeneral,
   },
   props: {
-    content: {
-      type: String,
-      default: '',
-    },
-    primaryHeaderImageUrl: {
-      type: String,
-      default: '',
-    },
-    subHeaderImageUrl: {
-      type: String,
-      default: '',
+    selectedTab: {
+      type: Object,
+      default: null,
     },
     isFirstTabSelected: {
       type: Boolean,
@@ -86,25 +69,20 @@ export default {
         borderRadius: this.isFirstTabSelected ? '0 20px 20px 20px' : '20px',
       };
     },
-    filteredContent () {
-      return this.content
-        .replace('../../media', process.env.MEDIA_URL)
-        .replace('<a href', '<a disabled-href');
+    content () {
+      return this.selectedTab && this.selectedTab.content;
     },
-    primaryHeaderImageStyle () {
-      return {
-        borderColor: this.textColor,
-        width: this.subHeaderImageUrl ? '960px' : '100%',
-      };
+    primaryHeaderImageUrl () {
+      const image = this.selectedTab && this.selectedTab.primaryHeaderImage;
+      return (image && image.file) ? image.file.publicUrl : '';
     },
-    subHeaderImageStyle () {
-      return {
-        borderColor: this.textColor,
-      };
+    subHeaderImageUrl () {
+      const image = this.selectedTab && this.selectedTab.subHeaderImage;
+      return (image && image.file) ? image.file.publicUrl : '';
     },
   },
   watch: {
-    content (newVal) {
+    selectedTab (newVal) {
       // re-calculate content area height and scrollbar thumb heigt
       this.$nextTick(() => {
         this.$refs['scroll-area-container'].calculateSize();
@@ -136,61 +114,13 @@ export default {
     background-color: white
     border-radius: 20px
     padding: 20px 50px 20px 20px
-    // overflow: hidden
     .binder-content-inner
       padding: 20px
       height: 100%
-      .header-image-container
-        height: 360px
-        margin-bottom: 40px
-        display: flex
-        justify-content: space-between
-        img.header-image
-          height: 100%
-          object-fit: cover
-          object-position: center
-          border: 2px;
-          border-style: solid;
-          overflow: hidden;
-          &.sub
-            width: 500px
     .scrollbar-container
       position: absolute
       top: 20px
       right: 20px
       bottom: 20px
       width: 30px
-</style>
-
-<style lang="stylus">
-@import '~@styles/fonts'
-
-.binder-content-inner
-  .wysiwyg
-    font-family: $base-font
-    font-size: 32px
-    line-height: 1.3em
-    h1, h2, h3, h4, h5
-      font-family: $title-font
-      margin-bottom: 1em
-    h1
-      font-size: 40px
-    p
-      margin-bottom: 1em
-    em
-      font-family: $base-font-oblique
-      strong
-        font-family: $title-font-oblique
-    strong
-      font-family: $title-font
-      em
-        font-family: $title-font-oblique
-    ul
-      list-style-type: disc
-      list-style-position: inside
-    ol
-      list-style-type: decimal
-      list-style-position: inside
-    td
-      vertical-align: top
 </style>
