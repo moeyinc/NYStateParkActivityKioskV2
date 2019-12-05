@@ -22,10 +22,10 @@
     "electron:build": "BUILD_TARGET=electron nuxt build && electron-builder"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.8.0",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
+    "@nuxtjs/axios": "^5.8.0",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/eslint-config": "^1.0.1",
     "@nuxtjs/eslint-module": "^1.0.0",

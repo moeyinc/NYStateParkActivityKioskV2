@@ -34,13 +34,15 @@ const path = require('path');
 const app = electron.app;
 const newWin = () => {
 	win = new electron.BrowserWindow({
+    width: 1920,
+    height: 1080,
 		webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
       preload: path.resolve(path.join(__dirname, "preload.js")),
     },
 	});
-	win.maximize();
+  win.setFullScreen(true);
 	win.on('closed', () => win = null);
 	if (config.dev) {
 		// Install vue dev tool and open chrome dev tools
