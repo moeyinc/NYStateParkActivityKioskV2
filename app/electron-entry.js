@@ -32,6 +32,7 @@ let win = null; // Current window
 const electron = require('electron');
 const path = require('path');
 const app = electron.app;
+electron.Menu.setApplicationMenu(null);
 const newWin = () => {
 	win = new electron.BrowserWindow({
     x: 0,
@@ -43,7 +44,8 @@ const newWin = () => {
       contextIsolation: true,
     },
   });
-  win.setApplicationMenu(null);
+  win.removeMenu();
+  win.setMenu(null);
   win.setFullScreen(true);
 	win.on('closed', () => win = null);
 	if (config.dev) {
