@@ -8,14 +8,14 @@
         class="binder-content-inner"
       >
         <BinderContentGeneral
-          v-if="!selectedTab.isGallery"
+          v-if="!selectedTab && selectedTab.isGallery"
           :content="content"
           :primary-header-image-url="primaryHeaderImageUrl"
           :sub-header-image-url="subHeaderImageUrl"
         />
         <BinderContentGallery
-          v-if="selectedTab.isGallery"
-          :gallery-images="selectedTab.galleryImages"
+          v-if="selectedTab && selectedTab.isGallery"
+          :gallery-images="selectedTab && selectedTab.galleryImages"
           @all-images-loaded="onAllGalleryImagesLoaded"
         />
       </ScrollAreaContainer>
