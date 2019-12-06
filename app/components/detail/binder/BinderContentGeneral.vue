@@ -43,6 +43,7 @@ export default {
   computed: {
     ...mapState(['generalSettings']),
     filteredContent () {
+      if (!this.content) return '';
       return this.content
         .replace('../../media', process.env.MEDIA_URL)
         .replace('<a href', '<a disabled-href');
