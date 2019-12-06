@@ -8,8 +8,9 @@
       <img
         :src="publicUrl"
         :style="{borderColor: generalSettings.textColor}"
+        :class="['gallery-item', {loaded}]"
         @click="$emit('click')"
-        class="gallery-item"
+        @load="onLoad"
       >
     </VueLightbox>
   </div>
@@ -29,8 +30,17 @@ export default {
       default: '',
     },
   },
+  data: () => ({
+    loaded: false,
+  }),
   computed: {
     ...mapState(['generalSettings']),
+  },
+  methods: {
+    onLoad () {
+      this.loaded = true;
+      this.$emit('load');
+    },
   },
 };
 </script>
@@ -41,11 +51,12 @@ export default {
   height: 400px
   object-fit: cover
   object-position: center
-  border: 2px
-  border-style: solid
   overflow: hidden
   margin-right: 20px
   margin-bottom: 20px
+  &.loaded
+    border: 2px
+    border-style: solid
 </style>
 
 <style lang="stylus">

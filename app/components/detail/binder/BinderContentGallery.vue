@@ -5,6 +5,7 @@
       :key="galleryImage.id"
       :public-url="galleryImage.file && galleryImage.file.publicUrl"
       :caption="galleryImage.caption"
+      @load="onLoad"
     />
   </div>
 </template>
@@ -24,7 +25,16 @@ export default {
   },
   data: () => ({
     overlay: false,
+    loadedCount: 0,
   }),
+  methods: {
+    onLoad () {
+      this.loadedCount++;
+      if (this.loadedCount >= this.galleryImages.length) {
+        this.$emit('all-images-loaded');
+      }
+    },
+  },
 };
 </script>
 

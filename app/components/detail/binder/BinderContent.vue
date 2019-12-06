@@ -16,6 +16,7 @@
         <BinderContentGallery
           v-if="selectedTab.isGallery"
           :gallery-images="selectedTab.galleryImages"
+          @all-images-loaded="onAllGalleryImagesLoaded"
         />
       </ScrollAreaContainer>
       <ScrollbarContainer
@@ -83,7 +84,6 @@ export default {
   },
   watch: {
     selectedTab (newVal) {
-      console.log('selectedTab', newVal);
       // re-calculate content area height and scrollbar thumb heigt
       this.$nextTick(() => {
         this.$refs['scroll-area-container'].calculateSize();
@@ -94,6 +94,9 @@ export default {
   methods: {
     scrollY (deltaY) {
       this.$refs['scroll-area-container'].scroll({ deltaY });
+    },
+    onAllGalleryImagesLoaded () {
+      this.$refs['scroll-area-container'].calculateSize();
     },
   },
 };
