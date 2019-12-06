@@ -34,12 +34,13 @@ const path = require('path');
 const app = electron.app;
 const newWin = () => {
 	win = new electron.BrowserWindow({
+    x: 0,
+    y: 0,
     width: 1920,
     height: 1080,
 		webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
-      preload: path.resolve(path.join(__dirname, "preload.js")),
     },
 	});
   win.setFullScreen(true);
