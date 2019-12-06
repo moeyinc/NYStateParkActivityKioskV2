@@ -42,9 +42,9 @@ const newWin = () => {
       nodeIntegration: false,
       contextIsolation: true,
     },
-	});
+  });
+  win.setApplicationMenu(null);
   win.setFullScreen(true);
-  win.setMenu(null);
 	win.on('closed', () => win = null);
 	if (config.dev) {
 		// Install vue dev tool and open chrome dev tools
@@ -52,7 +52,7 @@ const newWin = () => {
     installExtension(VUEJS_DEVTOOLS.id)
       .then(name => {
         console.log(`Added Extension:  ${name}`);
-        win.webContents.openDevTools();
+        // win.webContents.openDevTools();
       })
       .catch(err => console.log('An error occurred: ', err));
 
