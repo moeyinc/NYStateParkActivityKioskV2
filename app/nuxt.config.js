@@ -32,6 +32,7 @@ module.exports = {
   */
   plugins: [
     '@/plugins/vue-simple-svg',
+    { src: '@/plugins/vue-lightbox', mode: 'client' },
     '@/plugins/inject-utils',
   ],
   /*

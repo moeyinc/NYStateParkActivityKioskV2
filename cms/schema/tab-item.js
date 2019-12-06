@@ -28,6 +28,12 @@ module.exports = {
         isRequired: true,
         label: 'Content -- to insert an image, set the source as ../../media/[image-filename-found-in-the-Media-entry]',
       },
+      isGallery: { type: Checkbox },
+      galleryImages: {
+        type: Relationship,
+        ref: 'Medium',
+        many: true,
+      },
       activityLabel: {
         type: Text,
         access: {

@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   props: {
     content: {
@@ -37,20 +39,9 @@ export default {
       type: String,
       default: '',
     },
-    mainColor: {
-      type: String,
-      default: '',
-    },
-    subColor: {
-      type: String,
-      default: '',
-    },
-    textColor: {
-      type: String,
-      default: '',
-    },
   },
   computed: {
+    ...mapState(['generalSettings']),
     filteredContent () {
       return this.content
         .replace('../../media', process.env.MEDIA_URL)
@@ -58,13 +49,13 @@ export default {
     },
     primaryHeaderImageStyle () {
       return {
-        borderColor: this.textColor,
+        borderColor: this.generalSettings.textColor,
         width: this.subHeaderImageUrl ? '960px' : '100%',
       };
     },
     subHeaderImageStyle () {
       return {
-        borderColor: this.textColor,
+        borderColor: this.generalSettings.textColor,
       };
     },
   },

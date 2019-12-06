@@ -13,13 +13,12 @@
       :is-first-tab-selected="selectedTabIndex === 0"
       :main-color="selectedActivityColor.mainColor"
       :sub-color="selectedActivityColor.subColor"
-      :text-color="generalSettings.textColor"
     />
   </div>
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 import BinderTabList from './BinderTabList';
 import BinderContent from './BinderContent';
 
@@ -32,7 +31,6 @@ export default {
     selectedTabIndex: 0,
   }),
   computed: {
-    ...mapState(['generalSettings']),
     ...mapGetters(['selectedActivity', 'selectedActivityColor']),
     sortedTabItems () {
       return this.selectedActivity.tabItems.slice().sort(this.$sortByOrder).filter((tab) => tab.enabled);

@@ -70,6 +70,15 @@ export default {
                   publicUrl
                 }
               }
+              isGallery
+              galleryImages {
+                id
+                name
+                caption
+                file {
+                  publicUrl
+                }
+              }
             }
           }
         }

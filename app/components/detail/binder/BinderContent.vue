@@ -8,12 +8,14 @@
         class="binder-content-inner"
       >
         <BinderContentGeneral
-          :content="selectedTab.content"
+          v-if="!selectedTab.isGallery"
+          :content="content"
           :primary-header-image-url="primaryHeaderImageUrl"
           :sub-header-image-url="subHeaderImageUrl"
-          :main-color="mainColor"
-          :sub-color="subColor"
-          :text-color="textColor"
+        />
+        <BinderContentGallery
+          v-if="selectedTab.isGallery"
+          :gallery-images="selectedTab.galleryImages"
         />
       </ScrollAreaContainer>
       <ScrollbarContainer
@@ -29,12 +31,14 @@
 import ScrollAreaContainer from '@comps/scrollbar/ScrollAreaContainer';
 import ScrollbarContainer from '@comps/scrollbar/ScrollbarContainer';
 import BinderContentGeneral from './BinderContentGeneral';
+import BinderContentGallery from './BinderContentGallery';
 
 export default {
   components: {
     ScrollAreaContainer,
     ScrollbarContainer,
     BinderContentGeneral,
+    BinderContentGallery,
   },
   props: {
     selectedTab: {
@@ -50,10 +54,6 @@ export default {
       default: '',
     },
     subColor: {
-      type: String,
-      default: '',
-    },
-    textColor: {
       type: String,
       default: '',
     },
@@ -83,6 +83,7 @@ export default {
   },
   watch: {
     selectedTab (newVal) {
+      console.log('selectedTab', newVal);
       // re-calculate content area height and scrollbar thumb heigt
       this.$nextTick(() => {
         this.$refs['scroll-area-container'].calculateSize();
