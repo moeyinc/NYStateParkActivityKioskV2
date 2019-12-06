@@ -1,7 +1,7 @@
 {
-  "name": "nuxt-app",
+  "name": "moey-activity-kiosk",
   "version": "1.0.0",
-  "description": "My astonishing Nuxt.js project",
+  "description": "Moey Activity Kiosk",
   "author": "Seiya Kobayashi",
   "private": true,
   "main": "electron-entry.js",
@@ -22,11 +22,11 @@
     "electron:build": "BUILD_TARGET=electron nuxt build && electron-builder"
   },
   "dependencies": {
+    "dotenv": "^8.2.0",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
     "@nuxtjs/axios": "^5.8.0",
-    "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/eslint-config": "^1.0.1",
     "@nuxtjs/eslint-module": "^1.0.0",
     "babel-eslint": "^10.0.1",
