@@ -8,7 +8,7 @@
         class="binder-content-inner"
       >
         <BinderContentGeneral
-          v-if="!selectedTab && selectedTab.isGallery"
+          v-if="!(selectedTab && selectedTab.isGallery)"
           :content="content"
           :primary-header-image-url="primaryHeaderImageUrl"
           :sub-header-image-url="subHeaderImageUrl"
