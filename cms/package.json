@@ -5,7 +5,7 @@
   "version": "5.0.0",
   "author": "Seiya Kobayashi",
   "engines": {
-    "node": ">=8.4.0"
+    "node": ">=8.4.0 <13"
   },
   "scripts": {
     "dev:setup-all": "cross-env NODE_ENV=development DISABLE_LOGGING=true PORT=8011 SETUP=all keystone dev",
