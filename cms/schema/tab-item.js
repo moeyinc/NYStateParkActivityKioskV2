@@ -25,7 +25,6 @@ module.exports = {
       },
       content: {
         type: Wysiwyg,
-        isRequired: true,
         label: 'Content -- to insert an image, set the source as ../../media/[image-filename-found-in-the-Media-entry]',
       },
       isGallery: { type: Checkbox },
