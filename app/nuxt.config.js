@@ -45,7 +45,7 @@ module.exports = {
   env: {
     MEDIA_URL: process.env.MEDIA_URL,
   },
-  dev: process.env.NODE_ENV === 'DEV',
+  dev: process.env.NODE_ENV === 'development',
   /*
   ** Nuxt.js modules
   */
@@ -97,8 +97,7 @@ module.exports = {
       config.resolve.alias['@media'] = resolve('static/media');
 
       // electron
-      if (ctx.isClient && process.env.BUILD_TARGET === 'electron') {
-        console.log('building for electron');
+      if (process.env.BUILD_TARGET === 'electron') {
         // config.target = 'electron-renderer';
         config.output.publicPath = './_nuxt/';
       }

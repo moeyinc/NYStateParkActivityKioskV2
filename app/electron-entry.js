@@ -30,7 +30,6 @@ if (config.dev) {
 */
 let win = null; // Current window
 const electron = require('electron');
-const path = require('path');
 const app = electron.app;
 electron.Menu.setApplicationMenu(null);
 const newWin = () => {
