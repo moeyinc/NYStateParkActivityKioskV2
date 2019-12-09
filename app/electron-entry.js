@@ -17,13 +17,12 @@ if (config.dev) {
     console.error(err);
     process.exit(1);
   });
-  // Listen the server
-  server.listen();
-  _NUXT_URL_ = `http://localhost:${server.address().port}`;
-  console.log(`Nuxt working on ${_NUXT_URL_}`);
-} else {
-  _NUXT_URL_ = "file://" + __dirname + "/dist/index.html";
 }
+
+// Listen the server
+server.listen();
+_NUXT_URL_ = `http://localhost:${server.address().port}`;
+console.log(`Nuxt working on ${_NUXT_URL_}`);
 
 /*
 ** Electron
@@ -46,7 +45,21 @@ const newWin = () => {
   win.removeMenu();
   win.setMenu(null);
   win.setFullScreen(true);
-	win.on('closed', () => win = null);
+  win.on('closed', () => win = null);
+
+  // Wait for nuxt to build
+  const pollServer = () => {
+    http
+      .get(_NUXT_URL_, (res) => {
+      if (res.statusCode === 200) {
+        win.loadURL(_NUXT_URL_);
+      } else {
+        setTimeout(pollServer, 300);
+      }
+    })
+      .on('error', pollServer);
+  }
+  
 	if (config.dev) {
 		// Install vue dev tool and open chrome dev tools
 		const { default: installExtension, VUEJS_DEVTOOLS } = require('electron-devtools-installer');
@@ -57,21 +70,9 @@ const newWin = () => {
       })
       .catch(err => console.log('An error occurred: ', err));
 
-		// Wait for nuxt to build
-		const pollServer = () => {
-      http
-        .get(_NUXT_URL_, (res) => {
-				if (res.statusCode === 200) {
-          win.loadURL(_NUXT_URL_);
-        } else {
-          setTimeout(pollServer, 300);
-        }
-      })
-        .on('error', pollServer);
-		}
 		pollServer();
 	} else {
-    return win.loadURL(_NUXT_URL_);
+    pollServer();
   }
 }
 app.on('ready', newWin);

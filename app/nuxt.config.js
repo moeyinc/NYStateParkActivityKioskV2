@@ -2,7 +2,7 @@ const path = require('path');
 require('dotenv').config();
 
 module.exports = {
-  mode: process.env.BUILD_TARGET === 'electron' ? 'spa' : 'universal',
+  mode: 'universal',
   /*
   ** Headers of the page
   */
@@ -96,11 +96,12 @@ module.exports = {
       config.resolve.alias['@comps'] = resolve('components');
       config.resolve.alias['@media'] = resolve('static/media');
 
-      // electron
-      if (process.env.BUILD_TARGET === 'electron') {
-        // config.target = 'electron-renderer';
-        config.output.publicPath = './_nuxt/';
-      }
+
+
+      // Extend only webpack config for client-bundle
+			// if (process.env.BUILD_TARGET === 'electron' && ctx.isClient) {
+      //   config.target = 'electron-renderer';
+      // }
     },
   },
 };
