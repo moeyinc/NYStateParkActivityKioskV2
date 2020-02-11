@@ -4,6 +4,7 @@
     :style="{
       backgroundColor: generalSettings.backgroundColor,
       color: generalSettings.textColor,
+      cursor: isDev ? 'auto' : 'none',
     }"
     @click="displayRipple"
     class="default-layout"
@@ -20,6 +21,9 @@ export default {
   mixins: [rippleMixin],
   computed: {
     ...mapState(['generalSettings', 'activities', 'activityColors']),
+    isDev () {
+      return process.env.dev;
+    },
   },
   created () {
     this.fetchGeneralSettings();

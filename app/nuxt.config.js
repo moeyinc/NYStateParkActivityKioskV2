@@ -1,6 +1,8 @@
 const path = require('path');
 require('dotenv').config();
 
+console.log('NODE ENV', process.env.NODE_ENV);
+
 module.exports = {
   mode: 'universal',
   /*
@@ -44,6 +46,7 @@ module.exports = {
   ],
   env: {
     MEDIA_URL: process.env.MEDIA_URL,
+    dev: process.env.NODE_ENV === 'development',
   },
   dev: process.env.NODE_ENV === 'development',
   /*
