@@ -49,9 +49,9 @@ export default {
   width: 250px
   .home-button
     position: absolute
-    bottom: 5px
+    bottom: 0
     width: 250px
-    height: 50px
+    height: 70px
     display: flex
     align-items: center
     font-family: $title-font
