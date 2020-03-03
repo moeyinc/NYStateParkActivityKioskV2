@@ -4,6 +4,7 @@
       v-for="(tab, index) in tabs"
       :key="tab.id"
       :label="tab.tabLabel"
+      :width="tab.tabWidth"
       :main-color="mainColor"
       :sub-color="subColor"
       :first-tab="index === 0"
@@ -37,6 +38,9 @@ export default {
       type: Number,
       default: 0,
     },
+  },
+  mounted () {
+    console.log(this.tabs);
   },
   methods: {
     selectTab (index) {

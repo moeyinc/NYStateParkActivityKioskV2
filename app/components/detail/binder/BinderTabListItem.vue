@@ -1,5 +1,9 @@
 <template>
-  <div :class="['detail-main-tab-list-item', {selected}]" @click="$emit('click')">
+  <div
+    :class="['detail-main-tab-list-item', {selected}]"
+    :style="tabContainerStyle"
+    @click="$emit('click')"
+  >
     <div class="tab-edge left">
       <div :style="leftTabEdgeInnerStyle" class="inner" />
     </div>
@@ -35,10 +39,20 @@ export default {
       type: Boolean,
       default: false,
     },
+    width: {
+      type: Number,
+      default: 370,
+    },
   },
   computed: {
+    tabContainerStyle () {
+      return {
+        width: `${this.width + 40}px`,
+      };
+    },
     tabStyle () {
       return {
+        width: `${this.width}px`,
         color: this.selected ? '' : 'white',
         backgroundColor: this.selected ? 'white' : this.subColor,
       };
@@ -63,7 +77,6 @@ export default {
 @import '~@styles/fonts'
 
 .detail-main-tab-list-item
-  width: 410px
   height: 100%
   margin-left: -20px
   display: flex
@@ -71,7 +84,6 @@ export default {
   &.selected
     z-index: 1000
   .tab
-    width: 370px
     height: 100%
     border-radius: 20px 20px 0 0
     display: flex

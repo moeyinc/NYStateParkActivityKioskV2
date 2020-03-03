@@ -52,6 +52,7 @@ export default {
               id
               enabled
               tabLabel
+              tabWidth
               content
               order
               primaryHeaderImage {
