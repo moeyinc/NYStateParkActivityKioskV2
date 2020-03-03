@@ -46,7 +46,7 @@ export default {
       if (!this.content) return '';
       return this.content
         .replace('../../media', process.env.MEDIA_URL)
-        .replace('<a href', '<a disabled-href');
+        .replace('<a href="http', '<a disabled-href="http');
     },
     primaryHeaderImageStyle () {
       return {
