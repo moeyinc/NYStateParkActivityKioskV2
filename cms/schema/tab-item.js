@@ -13,6 +13,7 @@ module.exports = {
       tabLabel: { type: Text, isRequired: true },
       order: { type: Integer, isRequired: true },
       enabled: { type: Checkbox, defaultValue: true },
+      tabWidth: { type: Integer, defaultValue: 370 },
       primaryHeaderImage: {
         type: Relationship,
         ref: 'Medium',
