@@ -1,14 +1,18 @@
 <template>
-  <div class="home-page">
+  <div
+    v-if="generalSettings && activities && activityColors"
+    class="home-page"
+  >
     <HomeHeader />
     <HomeActivityList />
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapState } from 'vuex';
 import HomeHeader from '@comps/home/HomeHeader';
 import HomeActivityList from '@comps/home/HomeActivityList';
+import pageAsyncDataMixin from '@/mixins/page-async-data-mixin';
 
 export default {
   transition: 'fade',
@@ -16,13 +20,9 @@ export default {
     HomeHeader,
     HomeActivityList,
   },
-  mounted () {
-    this.fetchGeneralSettings();
-    this.fetchActivities();
-    this.fetchActivityColors();
-  },
-  methods: {
-    ...mapActions(['fetchGeneralSettings', 'fetchActivities', 'fetchActivityColors']),
+  mixins: [pageAsyncDataMixin],
+  computed: {
+    ...mapState(['generalSettings', 'activities', 'activityColors']),
   },
 };
 </script>

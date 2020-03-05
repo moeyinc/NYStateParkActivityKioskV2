@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="generalSettings && activities && activityColors"
     @click="resetTimer"
     class="detail-page"
   >
@@ -14,6 +15,7 @@
 import { mapState } from 'vuex';
 import DetailSideNav from '@comps/detail/side-nav/DetailSideNav';
 import DetailMainContainer from '@comps/detail/DetailMainContainer';
+import pageAsyncDataMixin from '@/mixins/page-async-data-mixin';
 
 export default {
   transition: 'fade',
@@ -21,11 +23,12 @@ export default {
     DetailSideNav,
     DetailMainContainer,
   },
+  mixins: [pageAsyncDataMixin],
   data: () => ({
     screenTimer: null,
   }),
   computed: {
-    ...mapState(['generalSettings']),
+    ...mapState(['generalSettings', 'activities', 'activityColors']),
   },
   created () {
     this.resetTimer();
@@ -36,7 +39,9 @@ export default {
   methods: {
     resetTimer () {
       clearTimeout(this.screenTimer);
-      const timeout = this.generalSettings.screenTimeoutInSeconds * 1000 || 300 * 1000;
+      const timeout = this.generalSettings && this.generalSettings.screenTimeoutInSeconds
+        ? this.generalSettings.screenTimeoutInSeconds * 1000
+        : 300 * 1000;
       this.screenTimer = setTimeout(() => {
         this.$router.push('/');
       }, timeout);

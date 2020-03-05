@@ -1,6 +1,6 @@
 export default {
   fetchGeneralSettings ({ commit }) {
-    this.$axios.post('/', {
+    return this.$axios.post('/', {
       query: `
         query {
           allGeneralSettings(where:{active: true}, first:1) {
@@ -20,7 +20,7 @@ export default {
     });
   },
   fetchActivityColors ({ commit }) {
-    this.$axios.post('/', {
+    return this.$axios.post('/', {
       query: `
         query {
           allColors {
@@ -37,7 +37,7 @@ export default {
     });
   },
   fetchActivities ({ commit }) {
-    this.$axios.post('/', {
+    return this.$axios.post('/', {
       query: `
         query {
           allActivities(where: {enabled: true}) {

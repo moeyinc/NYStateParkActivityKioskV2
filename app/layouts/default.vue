@@ -1,9 +1,8 @@
 <template>
   <div
-    v-if="generalSettings && activities && activityColors"
     :style="{
-      backgroundColor: generalSettings.backgroundColor,
-      color: generalSettings.textColor,
+      backgroundColor: generalSettings ? generalSettings.backgroundColor : 'black',
+      color: generalSettings ? generalSettings.textColor : 'white',
       cursor: isDev ? 'auto' : 'none',
     }"
     @click="displayRipple"
@@ -14,24 +13,17 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+// import { mapState, mapActions } from 'vuex';
+import { mapState } from 'vuex';
 import rippleMixin from '@/mixins/ripple-mixin';
 
 export default {
   mixins: [rippleMixin],
   computed: {
-    ...mapState(['generalSettings', 'activities', 'activityColors']),
+    ...mapState(['generalSettings']),
     isDev () {
       return process.env.dev;
     },
-  },
-  created () {
-    this.fetchGeneralSettings();
-    this.fetchActivities();
-    this.fetchActivityColors();
-  },
-  methods: {
-    ...mapActions(['fetchGeneralSettings', 'fetchActivities', 'fetchActivityColors']),
   },
 };
 </script>
