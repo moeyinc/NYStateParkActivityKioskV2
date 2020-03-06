@@ -42,6 +42,7 @@ export default {
         query {
           allActivities(where: {enabled: true}) {
             id
+            updatedAt
             order
             buttonLabel
             pageTitle
@@ -50,6 +51,7 @@ export default {
             }
             tabItems {
               id
+              updatedAt
               enabled
               tabLabel
               tabWidth
