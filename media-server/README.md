@@ -5,5 +5,5 @@
 2. add a .env file like below
 ```bash
 PORT=3020
-MEDIA_PATH="../cms/media"
+MEDIA_DIR="../cms/media"
 ```

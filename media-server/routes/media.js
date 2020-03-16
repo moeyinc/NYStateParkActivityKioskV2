@@ -6,7 +6,7 @@ const path = require('path');
 router.get('/:name', function(req, res, next) {
   const rootPath = path.join(path.dirname(require.main.filename), '..');
   const options = {
-    root: path.join(rootPath, process.env.MEDIA_PATH),
+    root: path.join(rootPath, process.env.MEDIA_DIR),
   };
   const filename = req.params.name;
   res.sendFile(filename, options, (err) => {
