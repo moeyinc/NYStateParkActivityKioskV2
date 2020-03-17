@@ -2,15 +2,16 @@ const { Keystone } = require('@keystonejs/keystone');
 const { PasswordAuthStrategy } = require('@keystonejs/auth-password');
 const { GraphQLApp } = require('@keystonejs/app-graphql');
 const { AdminUIApp } = require('@keystonejs/app-admin-ui');
-const { StaticApp } = require('@keystonejs/app-static');
 const { MongooseAdapter: Adapter } = require('@keystonejs/adapter-mongoose');
-const { SETUP, MEDIA_DIR, MEDIA_URL, PROJECT_NAME } = require('./config');
+const { SETUP, PROJECT_NAME } = require('./config');
 const { userListConfig } = require('./schema/user');
 const { generalSettingListConfig, generalSettingPresets } = require('./schema/general-setting');
 const { colorListConfig, colorPresets } = require('./schema/color');
 const { activityListConfig, activityPresets } = require('./schema/activity');
 const { mediaListConfig } = require('./schema/media');
 const { tabItemListConfig } = require('./schema/tab-item');
+
+console.log('my port is', process.env.PORT);
 
 // create a keystone instance
 const keystone = new Keystone({
@@ -56,10 +57,6 @@ module.exports = {
     new AdminUIApp({
       enableDefaultRoute: true,
       authStrategy: !Boolean(SETUP) && authStrategy,
-    }),
-    new StaticApp({
-      path: MEDIA_DIR,
-      src: '.' + MEDIA_DIR,
     }),
   ],
 };

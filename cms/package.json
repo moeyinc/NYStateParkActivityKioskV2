@@ -7,15 +7,18 @@
   "engines": {
     "node": ">=8.4.0 <13"
   },
+  "config": {
+    "PORT": "8011"
+  },
   "scripts": {
-    "dev:setup-all": "cross-env NODE_ENV=development DISABLE_LOGGING=true PORT=8011 SETUP=all keystone dev",
-    "dev:setup-general": "cross-env NODE_ENV=development DISABLE_LOGGING=true PORT=8011 SETUP=general keystone dev",
-    "dev:setup-activities": "cross-env NODE_ENV=development DISABLE_LOGGING=true PORT=8011 SETUP=activities keystone dev",
-    "dev:setup-colors": "cross-env NODE_ENV=development DISABLE_LOGGING=true PORT=8011 SETUP=colors keystone dev",
-    "dev:setup-users": "cross-env NODE_ENV=development DISABLE_LOGGING=true PORT=8011 SETUP=users keystone dev",
-    "dev": "cross-env NODE_ENV=development DISABLE_LOGGING=true PORT=8011 keystone dev",
-    "build": "cross-env NODE_ENV=production PORT=8011 keystone build",
-    "start": "cross-env NODE_ENV=production PORT=8011 keystone start"
+    "dev:setup-all": "cross-env NODE_ENV=development DISABLE_LOGGING=true SETUP=all PORT=$npm_package_config_PORT keystone dev",
+    "dev:setup-general": "cross-env NODE_ENV=development DISABLE_LOGGING=true SETUP=general PORT=$npm_package_config_PORT keystone dev",
+    "dev:setup-activities": "cross-env NODE_ENV=development DISABLE_LOGGING=true SETUP=activities PORT=$npm_package_config_PORT keystone dev",
+    "dev:setup-colors": "cross-env NODE_ENV=development DISABLE_LOGGING=true SETUP=colors PORT=$npm_package_config_PORT keystone dev",
+    "dev:setup-users": "cross-env NODE_ENV=development DISABLE_LOGGING=true SETUP=users PORT=$npm_package_config_PORT keystone dev",
+    "dev": "cross-env NODE_ENV=development DISABLE_LOGGING=true PORT=$npm_package_config_PORT keystone dev",
+    "build": "cross-env NODE_ENV=production PORT=$npm_package_config_PORT keystone build",
+    "start": "cross-env NODE_ENV=production PORT=$npm_package_config_PORT keystone start"
   },
   "dependencies": {
     "@keystonejs/adapter-mongoose": "^5.0.0",
@@ -28,6 +31,7 @@
     "@keystonejs/file-adapters": "^5.1.0",
     "@keystonejs/keystone": "^5.0.0",
     "@keystonejs/list-plugins": "^5.0.0",
-    "cross-env": "^5.2.0"
+    "cross-env": "^5.2.0",
+    "dotenv": "^8.2.0"
   }
 }
