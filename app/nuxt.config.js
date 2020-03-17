@@ -1,10 +1,11 @@
 const path = require('path');
 require('dotenv').config();
 
-console.log('NODE ENV', process.env.NODE_ENV);
-
 module.exports = {
   mode: 'universal',
+  server: {
+    port: process.env.PORT || 3000,
+  },
   /*
   ** Headers of the page
   */
@@ -45,7 +46,7 @@ module.exports = {
     '@nuxtjs/eslint-module',
   ],
   env: {
-    MEDIA_URL: process.env.MEDIA_URL,
+    MEDIA_URL: process.env.MEDIA_SERVER_API_URL,
     dev: process.env.NODE_ENV === 'development',
   },
   dev: process.env.NODE_ENV === 'development',
@@ -53,8 +54,11 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
-    ['@nuxtjs/axios', { baseUrl: process.env.API_URL }],
+    '@nuxtjs/axios',
   ],
+  // axios: {
+  //   baseUrl: process.env.CMS_API_ENDPOINT,
+  // },
   /*
   ** Build configuration
   */

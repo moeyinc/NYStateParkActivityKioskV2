@@ -48,6 +48,7 @@ export default {
             pageTitle
             svgIcon {
               publicUrl
+              filename
             }
             tabItems {
               id
@@ -63,6 +64,7 @@ export default {
                 caption
                 file {
                   publicUrl
+                  filename
                 }
               }
               subHeaderImage {
@@ -71,6 +73,7 @@ export default {
                 caption
                 file {
                   publicUrl
+                  filename
                 }
               }
               isGallery
@@ -80,6 +83,7 @@ export default {
                 caption
                 file {
                   publicUrl
+                  filename
                 }
               }
             }

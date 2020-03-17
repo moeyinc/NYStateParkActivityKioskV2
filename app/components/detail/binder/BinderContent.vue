@@ -10,8 +10,8 @@
         <BinderContentGeneral
           v-if="!(selectedTab && selectedTab.isGallery)"
           :content="content"
-          :primary-header-image-url="primaryHeaderImageUrl"
-          :sub-header-image-url="subHeaderImageUrl"
+          :primary-header-image-filename="primaryHeaderImageFilename"
+          :sub-header-image-filename="subHeaderImageFilename"
         />
         <BinderContentGallery
           v-if="selectedTab && selectedTab.isGallery"
@@ -73,13 +73,13 @@ export default {
     content () {
       return this.selectedTab && this.selectedTab.content;
     },
-    primaryHeaderImageUrl () {
+    primaryHeaderImageFilename () {
       const image = this.selectedTab && this.selectedTab.primaryHeaderImage;
-      return (image && image.file) ? image.file.publicUrl : '';
+      return (image && image.file) ? image.file.filename : '';
     },
-    subHeaderImageUrl () {
+    subHeaderImageFilename () {
       const image = this.selectedTab && this.selectedTab.subHeaderImage;
-      return (image && image.file) ? image.file.publicUrl : '';
+      return (image && image.file) ? image.file.filename : '';
     },
   },
   watch: {

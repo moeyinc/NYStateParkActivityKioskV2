@@ -4,7 +4,7 @@
     <div :style="baseStyle" class="base">
       <PageTitle
         :title="selectedActivity.pageTitle"
-        :icon-url="selectedActivity.svgIcon && selectedActivity.svgIcon.publicUrl"
+        :icon-filename="selectedActivity.svgIcon && selectedActivity.svgIcon.filename"
       />
       <Binder />
     </div>

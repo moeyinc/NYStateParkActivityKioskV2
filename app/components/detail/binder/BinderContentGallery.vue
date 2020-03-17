@@ -3,7 +3,7 @@
     <BinderContentGalleryItem
       v-for="(galleryImage) in galleryImages"
       :key="galleryImage.id"
-      :public-url="galleryImage.file && galleryImage.file.publicUrl"
+      :image-filename="galleryImage.file && galleryImage.file.filename"
       :caption="galleryImage.caption"
       @load="onLoad"
     />

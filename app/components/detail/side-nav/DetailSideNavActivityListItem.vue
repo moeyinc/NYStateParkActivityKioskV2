@@ -16,7 +16,7 @@
       />
       <div class="svg-wrapper">
         <simple-svg
-          :src="iconUrl"
+          :src="$getFileURL(iconFilename)"
           :fill="svgColor"
           :stroke="svgColor"
           fill-class-name="fill-to-change"
@@ -45,7 +45,7 @@ export default {
       type: String,
       default: '',
     },
-    iconUrl: {
+    iconFilename: {
       type: String,
       default: '',
     },

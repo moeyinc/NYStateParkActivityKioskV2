@@ -3,7 +3,7 @@
     <h1>{{ title }}</h1>
     <div class="icon-wrapper">
       <simple-svg
-        :src="iconUrl"
+        :src="$getFileURL(iconFilename)"
         fill-class-name="fill-to-change"
         fill="white"
         stroke-class-name="stroke-to-change"
@@ -20,7 +20,7 @@ export default {
       type: String,
       default: '',
     },
-    iconUrl: {
+    iconFilename: {
       type: String,
       default: '',
     },

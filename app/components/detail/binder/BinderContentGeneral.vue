@@ -1,17 +1,17 @@
 <template>
   <div class="binder-content-general">
     <div
-      v-if="primaryHeaderImageUrl"
+      v-if="primaryHeaderImageFilename"
       class="header-image-container"
     >
       <img
-        :src="primaryHeaderImageUrl"
+        :src="$getFileURL(primaryHeaderImageFilename)"
         :style="primaryHeaderImageStyle"
         class="primary header-image"
       >
       <img
-        v-if="subHeaderImageUrl"
-        :src="subHeaderImageUrl"
+        v-if="subHeaderImageFilename"
+        :src="$getFileURL(subHeaderImageFilename)"
         :style="subHeaderImageStyle"
         class="sub header-image"
       >
@@ -31,11 +31,11 @@ export default {
       type: String,
       default: '',
     },
-    primaryHeaderImageUrl: {
+    primaryHeaderImageFilename: {
       type: String,
       default: '',
     },
-    subHeaderImageUrl: {
+    subHeaderImageFilename: {
       type: String,
       default: '',
     },
@@ -51,7 +51,7 @@ export default {
     primaryHeaderImageStyle () {
       return {
         borderColor: this.generalSettings.textColor,
-        width: this.subHeaderImageUrl ? '960px' : '100%',
+        width: this.subHeaderImageFilename ? '960px' : '100%',
       };
     },
     subHeaderImageStyle () {

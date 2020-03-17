@@ -4,7 +4,7 @@ export default {
   },
   updateActivities (state, activities) {
     if (checkIfActivitiesAreUpdated(state.activities, activities)) {
-      console.log('activities updated');
+      // console.log('activities updated');
       state.activities = activities;
       state.selectedActivityId = activities[0].id;
     } else {

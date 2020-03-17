@@ -5,7 +5,7 @@
         v-for="(activity, index) in activities"
         :key="activity.id"
         :label="activity.buttonLabel"
-        :icon-url="activity.svgIcon && activity.svgIcon.publicUrl"
+        :icon-filename="activity.svgIcon && $getFileURL(activity.svgIcon.filename)"
         :main-color="activityColors[index] && activityColors[index].mainColor"
         :button-width="buttonWidth"
         :button-height="buttonHeight"

@@ -9,7 +9,7 @@
   >
     <div class="inner">
       <simple-svg
-        :src="iconUrl"
+        :src="iconFilename"
         :fill="svgColor"
         :stroke="svgColor"
         :height="svgHeight"
@@ -35,7 +35,7 @@ export default {
       type: String,
       default: '',
     },
-    iconUrl: {
+    iconFilename: {
       type: String,
       default: '',
     },

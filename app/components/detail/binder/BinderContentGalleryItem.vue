@@ -1,12 +1,12 @@
 <template>
   <div>
     <VueLightbox
-      :src="publicUrl"
+      :src="$getFileURL(imageFilename)"
       :caption="caption"
       album="albumGallery"
     >
       <img
-        :src="publicUrl"
+        :src="$getFileURL(imageFilename)"
         :style="{borderColor: generalSettings.textColor}"
         :class="['gallery-item', {loaded}]"
         @click="$emit('click')"
@@ -21,7 +21,7 @@ import { mapState } from 'vuex';
 
 export default {
   props: {
-    publicUrl: {
+    imageFilename: {
       type: String,
       default: '',
     },
