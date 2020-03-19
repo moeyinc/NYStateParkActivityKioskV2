@@ -1,6 +1,6 @@
 const { SETUP } = require('../config');
 const access = require('../helpers/access-control');
-const { Text, Checkbox, Color, Integer, DateTime } = require('@keystonejs/fields');
+const { Text, Checkbox, Color, Integer } = require('@keystonejs/fields');
 const { atTracking } = require('@keystonejs/list-plugins');
 
 module.exports = {
@@ -13,6 +13,7 @@ module.exports = {
       kioskTitle: { type: Text },
       hideParkLogo: { type: Checkbox },
       screenTimeoutInSeconds: { type: Integer },
+      pollingIntervalInMinutes: { type: Integer, defaultValue: 10 },
     },
     labelField: 'presetName',
     adminConfig: {
@@ -40,6 +41,7 @@ module.exports = {
         kioskTitle: "THINGS TO DO",
         hideParkLogo: false,
         screenTimeoutInSeconds: 300,
+        pollingIntervalInMinutes: 10,
       }
     }
   ]`,
