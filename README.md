@@ -1,7 +1,7 @@
 # NYStateParkActivityKioskV2
 
 ## Initial Setup
-1. Install latest node+npm and mongodb
+1. Install node(node>= 10.x)+npm and mongodb(>= 4.x:)
 2. setup media server with ```cd media-server && npm install```
 3. add a .env file like below
 ```bash
