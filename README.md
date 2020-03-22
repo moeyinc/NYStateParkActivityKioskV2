@@ -1,41 +1,67 @@
 # NYStateParkActivityKioskV2
 
-## Initial Setup
-1. Install node(node>= 10.x)+npm and mongodb(>= 4.x:)
-2. setup media server with ```cd media-server && npm install```
-3. add a .env file like below
+## Prerequisite
+- nodejs (>= 10.x) and npm
+- mongodb(>= 4.x:)
+
+## Nuxt app
+1. ```cd app && npm install```
+2. add a .env file like below
 ```bash
-PORT=3020
+# local install example
+PORT=3000
+API_URL="http://localhost:3002/admin/api"
+MEDIA_SERVER_API_URL="http://localhost:3001/media"
+```
+```bash
+# cloud install example
+PORT=3000
+API_URL="http://XXXXXXXX.com/admin/api"
+MEDIA_SERVER_API_URL="http://XXXXXXXX.com/media"
+SHOW_CURSOR=true
+```
+3. ```npm run build``` or ```npm run electron:build```
+4. ```npm run start``` or  ```npm run electron```
+
+## Media server
+1. ```cd media-server && npm install```
+2. add a .env file like below
+```bash
+PORT=3001
 MEDIA_DIR="../cms/media"
 ```
-4. In another terminal window, setup cms with ```cd cms && npm install```
-5. add a .env file like below
+3. ```npm run start```
+
+## CMS
+1. ```cd cms && npm install```
+2. add a .env file like below
 ```bash
-PORT=8011
+PORT=3002
 MEDIA_DIR="./media"
-MEDIA_SERVER_API_URL="http://localhost:3020/media"
+MEDIA_SERVER_API_URL="http://localhost:3001/media"
 PROJECT_NAME="MOEY ACTIVITY KIOSK CMS"
 ```
-6. ```npm run dev:setup-all```, then open localhost:8011, login to the CMS and create an admin user
-7. logout, and ```npm run dev```
-8. In another terminal window, setup kiosk app with ```cd app && npm install```
-9. add a .env file like below
+
+#### Initialize CMS with new data
+- ```npm run dev:setup-all```, then open it in a browser, login to the CMS and create an admin user
+
+#### Import existing data
+- use utilities/export-collections.js to export data from the existing db
+- use utilities/import-collections.js to import data to the new db
+- copy media files to cms/media/
+
+3. ```npm run build```
+4. ```npm run start```
+
+## Nginx reverse proxy config example for cloud install
 ```bash
-PORT=3000
-API_URL="http://localhost:8011/admin/api"
-MEDIA_SERVER_API_URL="http://localhost:3020/media"
+location / {
+  proxy_pass http://localhost:3000;
+}
+location /media {
+  proxy_pass http://localhost:3001;
+}
+location /admin/api {
+  proxy_pass http://localhost:3002;
+}
 ```
-10. ```npm run dev``` and open localhost:3000
-11. then start setting content in CMS. You can find sample media files at /sample-assets
-
-## Build apps for local environment
-1. At cms/ Build Keystone app by ```npm run build```
-2. At app/ Build Electron app by ```npm run electron:build```
-3. Start Keystone app by ```npm run start```
-4. Start Electron app by ```npm run electron```
-
-## Build apps for cloud environment
-1. At cms/ Build Keystone app by ```npm run build```
-2. At app/ Build Nuxt app by ```npm run build```
-3. Start Keystone app by ```npm run start```
-4. Start Nuxt app by ```npm run start```
