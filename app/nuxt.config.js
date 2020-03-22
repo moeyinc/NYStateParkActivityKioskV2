@@ -48,6 +48,7 @@ module.exports = {
   env: {
     MEDIA_URL: process.env.MEDIA_SERVER_API_URL,
     dev: process.env.NODE_ENV === 'development',
+    SHOW_CURSOR: process.env.SHOW_CURSOR,
   },
   dev: process.env.NODE_ENV === 'development',
   /*

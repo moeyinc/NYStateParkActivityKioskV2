@@ -3,7 +3,7 @@
     :style="{
       backgroundColor: generalSettings ? generalSettings.backgroundColor : 'black',
       color: generalSettings ? generalSettings.textColor : 'white',
-      cursor: isDev ? 'auto' : 'none',
+      cursor: isDev || showCursor ? 'auto' : 'none',
     }"
     @click="displayRipple"
     class="default-layout"
@@ -25,6 +25,9 @@ export default {
     ...mapState(['generalSettings']),
     isDev () {
       return process.env.dev;
+    },
+    showCursor () {
+      return process.env.SHOW_CURSOR;
     },
   },
   mounted () {
