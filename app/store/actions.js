@@ -1,3 +1,5 @@
+import { sortByOrder } from '@/plugins/inject-utils';
+
 export default {
   fetchGeneralSettings ({ commit }) {
     return this.$axios.post('/', {
@@ -33,7 +35,7 @@ export default {
         }
       `,
     }).then((res) => {
-      const activityColors = res.data.data.allColors.sort(this.$sortByOrder);
+      const activityColors = res.data.data.allColors.sort(sortByOrder);
       commit('updateActivityColors', activityColors);
     });
   },
@@ -92,7 +94,7 @@ export default {
         }
       `,
     }).then((res) => {
-      const activities = res.data.data.allActivities.sort(this.$sortByOrder);
+      const activities = res.data.data.allActivities.sort(sortByOrder);
       commit('updateActivities', activities);
     });
   },
