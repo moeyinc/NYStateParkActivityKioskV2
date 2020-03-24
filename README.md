@@ -36,9 +36,17 @@ MEDIA_DIR="../cms/media"
 1. ```cd cms && npm install```
 2. add a .env file like below
 ```bash
+# local install example
 PORT=3002
 MEDIA_DIR="./media"
 MEDIA_SERVER_API_URL="http://localhost:3001/media"
+PROJECT_NAME="MOEY ACTIVITY KIOSK CMS"
+```
+```bash
+# cloud install example
+PORT=3002
+MEDIA_DIR="./media"
+MEDIA_SERVER_API_URL="http://XXXXXXXX.com/media"
 PROJECT_NAME="MOEY ACTIVITY KIOSK CMS"
 ```
 
@@ -61,7 +69,7 @@ location / {
 location /media {
   proxy_pass http://localhost:3001;
 }
-location /admin/api {
+location /admin {
   proxy_pass http://localhost:3002;
 }
 ```
