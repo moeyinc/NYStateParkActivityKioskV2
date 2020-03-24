@@ -63,13 +63,18 @@ PROJECT_NAME="MOEY ACTIVITY KIOSK CMS"
 
 ## Nginx reverse proxy config example for cloud install
 ```bash
-location / {
-  proxy_pass http://localhost:3000;
-}
-location /media {
-  proxy_pass http://localhost:3001;
-}
-location /admin {
-  proxy_pass http://localhost:3002;
+server {
+  server_name [your-domain];
+  client_max_body_size 20M;
+  
+  location / {
+    proxy_pass http://localhost:3000;
+  }
+  location /media {
+    proxy_pass http://localhost:3001;
+  }
+  location /admin {
+    proxy_pass http://localhost:3002;
+  }
 }
 ```
