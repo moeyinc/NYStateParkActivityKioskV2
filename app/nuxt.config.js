@@ -63,16 +63,6 @@ module.exports = {
       importScripts: [
         'custom-sw.js',
       ],
-      preCaching: [
-        '_nuxt/app.js',
-        'app.js',
-      ],
-      offline: true,
-      autoRegister: true,
-    },
-    manifest: {
-      name: 'Please load this service worker!!!',
-      lang: 'en-us',
     },
   },
   /*
