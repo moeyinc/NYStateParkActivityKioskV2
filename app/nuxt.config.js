@@ -56,10 +56,25 @@ module.exports = {
   */
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/pwa',
   ],
-  // axios: {
-  //   baseUrl: process.env.CMS_API_ENDPOINT,
-  // },
+  pwa: {
+    workbox: {
+      importScripts: [
+        'custom-sw.js',
+      ],
+      preCaching: [
+        '_nuxt/app.js',
+        'app.js',
+      ],
+      offline: true,
+      autoRegister: true,
+    },
+    manifest: {
+      name: 'Please load this service worker!!!',
+      lang: 'en-us',
+    },
+  },
   /*
   ** Build configuration
   */
