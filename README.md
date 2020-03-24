@@ -1,5 +1,14 @@
 # NYStateParkActivityKioskV2
 
+## Update log
+### V2.1
+- Decoupled cms, nuxt-app, and media-server. Removed all interdependent codes and made all ports and domains manageable with .env files (cms requires package.json to change port)
+- Updated readme (this) to set up applications for local and cloud installs
+- Added utility scripts to imoprt / export MongoDB data
+- new-feature: polling every 10 minitues (configurable) to check if there's change on activity data
+- new-feature: add a flag to enable / disable cursor display
+- bug-fix: activities' order was not sorted based on their order values
+
 ## Prerequisite
 - nodejs (>= 10.x) and npm
 - mongodb(>= 4.x:)
