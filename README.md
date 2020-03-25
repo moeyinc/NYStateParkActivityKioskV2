@@ -3,6 +3,7 @@
 ## Update log
 ### V2.1
 - Decoupled cms, nuxt-app, and media-server. Removed all interdependent codes and made all ports and domains manageable with .env files (cms requires package.json to change port)
+- Added offline support. The frontend caches static files and media assets and stores API responses as JSON in IndexdDB, and if it's offline it loads data from them instead of trying to throwing HTTP requests.
 - Updated readme (this) to set up applications for local and cloud installs
 - Added utility scripts to imoprt / export MongoDB data
 - new-feature: polling every 10 minitues (configurable) to check if there's change on activity data

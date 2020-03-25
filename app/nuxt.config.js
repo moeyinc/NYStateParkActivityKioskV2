@@ -1,5 +1,7 @@
+const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
+const GENERATIVE_SW_SCRIPT_NAME = 'sw.custom.js';
 
 module.exports = {
   mode: 'universal',
@@ -56,10 +58,26 @@ module.exports = {
   */
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/pwa',
   ],
-  // axios: {
-  //   baseUrl: process.env.CMS_API_ENDPOINT,
-  // },
+  pwa: {
+    workbox: {
+      swURL: GENERATIVE_SW_SCRIPT_NAME,
+    },
+  },
+  hooks: {
+    build: {
+      before: (builder) => {
+        const templateFilePath = path.join(builder.nuxt.options.srcDir, 'hooks', `template.${GENERATIVE_SW_SCRIPT_NAME}`);
+        let template = fs.readFileSync(templateFilePath, { encoding: 'utf8' });
+        const API_URL = removeSlashAtEnd(process.env.API_URL);
+        const MEDIA_SERVER_API_URL = removeSlashAtEnd(process.env.MEDIA_SERVER_API_URL);
+        const swScript = template.replace('__API_URL__', API_URL).replace('__MEDIA_SERVER_API_URL__', MEDIA_SERVER_API_URL);
+        const swScriptFilePath = path.join(builder.nuxt.options.srcDir, 'static', GENERATIVE_SW_SCRIPT_NAME);
+        fs.writeFileSync(swScriptFilePath, swScript, { encoding: 'utf8' });
+      },
+    },
+  },
   /*
   ** Build configuration
   */
@@ -103,13 +121,6 @@ module.exports = {
       config.resolve.alias['@fonts'] = resolve('assets/fonts');
       config.resolve.alias['@comps'] = resolve('components');
       config.resolve.alias['@media'] = resolve('static/media');
-
-
-
-      // Extend only webpack config for client-bundle
-			// if (process.env.BUILD_TARGET === 'electron' && ctx.isClient) {
-      //   config.target = 'electron-renderer';
-      // }
     },
   },
 };
@@ -120,4 +131,12 @@ module.exports = {
  */
 function resolve (relPath) {
   return path.join(__dirname, relPath);
+}
+
+/*
+ * removeSlashAtEnd
+ * @return {!String} URL without slash at the end
+ */
+function removeSlashAtEnd (url) {
+  return url.substr(-1) === '/' ? url.slice(0, -1) : url;
 }
