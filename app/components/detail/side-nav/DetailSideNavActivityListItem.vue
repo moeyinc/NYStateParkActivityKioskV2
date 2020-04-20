@@ -144,6 +144,7 @@ export default {
       display: flex
       align-items: center
       justify-content: center
+      width: 30px
     .label-wrapper
       height: 100%
       display: flex
