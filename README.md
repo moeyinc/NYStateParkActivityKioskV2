@@ -88,3 +88,10 @@ server {
   }
 }
 ```
+
+## How to create a new SVG icon for an activity
+The icon uses my open source library "vue-simple-svg" <https://github.com/seiyable/vue-simple-svg> that supports loading a SVG image file as an inline SVG and allows you to easily change its color and switch between different sources.
+To create a new icon compatible with this Activity Kiosk, follow this step below.
+1. Find an SVG icon online (I often used a website called "The Noun Project") or create a new vector-based icon and export it as an SVG image.
+2. Open it with a text editor and remove unnecessary elements. And add classes of "fill-to-change" or "stroke-to-change" to the elements whose color you want to change when a user selects its button. Looking at the sample icons should help you understand where to add classes. [Reference](https://github.com/moeyinc/NYStateParkActivityKioskV2/blob/master/sample-assets/icons/hiking.svg?short_path=e04af6d)
+3. Upload the SVG file via CMS and test if its color changes in the way you expected. If you don't want to test in a production environment, use a demo site or local environment.
