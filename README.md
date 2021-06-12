@@ -10,6 +10,20 @@
 - new-feature: add a flag to enable / disable cursor display
 - bug-fix: activities' order was not sorted based on their order values
 
+## Architecture Overview
+There are three key components: kiosk-app, CMS, media-server. Users can access the kiosk app via a web browser (or a desktop app generated with Electron), and the kiosk app loads content data from CMS and media files from media-server. Each of the servers (kiosk-app, cms, media-server) can be hosted on premises or in cloud.
+
+1. kiosk-app
+Kiosk app is responsible for serving the user interface to users. We use Nuxt.js for building and serving the single page application. There are only two pages: home (index) and detail. Home screen displays the list of activities available in/around the park with large buttons. Detail screen displays the detail of each activity with tabs UI. Each activity can show up to 4 tabs in which you can show an article or an image gallery for the activity.
+The new content data is fetched from CMS either when a page is loaded or every 10 minutes via polling (configurable).
+The demensions are currently fixed to 1920x1080, hense the touchscreen monitor to display this kiosk app should have the same dimensions. Also the hardware should handle the mouse click emulation to properly trigger mouse events in the kiosk app.
+
+2. CMS
+CMS is responsible for serving the content data to the kiosk app and providing a GUI to manage the data with the administrators. We use a headless CMS framework called Keystone.js, which can generate a GraphQL API server and the Admin UI based on schema files (schema for activity entries, tab items, media files, etc) we pass to it. We store all data in MongoDB, except for media files (icons, images, etc) which are stored under cms/media directory by default.
+
+3. media-server
+Media server is responsible for serving the media files such as icons, images, etc. It's a simple Express.js server that provides an API endpoint for kiosk-app to get media files from a specified directory. This component could be integrated to CMS if we find a good configuration for keystone.js to do so.
+
 ## Prerequisite
 - nodejs (>= 10.x) and npm
 - mongodb(>= 4.x:)
