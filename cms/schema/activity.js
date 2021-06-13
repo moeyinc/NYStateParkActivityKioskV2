@@ -1,8 +1,9 @@
+const { ENABLE_SPANISH_SUPPORT } = require('../config');
 const { localFileAdapter } = require('../helpers/file-adapter');
 const { Text, Checkbox, File, Integer, Relationship } = require('@keystonejs/fields');
 const { atTracking } = require('@keystonejs/list-plugins');
 
-module.exports = {
+const config = {
   activityListConfig: {
     fields: {
       enabled: { type: Checkbox, defaultValue: true },
@@ -136,3 +137,10 @@ module.exports = {
     }
   ]`,
 };
+
+if (ENABLE_SPANISH_SUPPORT) {
+  config.activityListConfig.fields.buttonLabelInSpanish = { type: Text };
+  config.activityListConfig.fields.pageTitleInSpanish = { type: Text };
+}
+
+module.exports = config;

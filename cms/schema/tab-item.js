@@ -1,8 +1,9 @@
+const { ENABLE_SPANISH_SUPPORT } = require('../config');
 const { Text, Checkbox, Relationship, Integer } = require('@keystonejs/fields');
 const { Wysiwyg } = require('@keystonejs/fields-wysiwyg-tinymce');
 const { atTracking } = require('@keystonejs/list-plugins');
 
-module.exports = {
+const config = {
   tabItemListConfig: {
     fields: {
       activity: {
@@ -135,3 +136,13 @@ module.exports = {
     ],
   },
 };
+
+if (ENABLE_SPANISH_SUPPORT) {
+  config.tabItemListConfig.fields.tabLabelInSpanish = { type: Text };
+  config.tabItemListConfig.fields.contentInSpanish = {
+    type: Wysiwyg,
+    label: 'Content in Spanish -- to insert an image, set the source as ../../media/[image-filename-found-in-the-Media-entry]',
+  };
+}
+
+module.exports = config;

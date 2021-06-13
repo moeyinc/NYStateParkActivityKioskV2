@@ -1,8 +1,9 @@
+const { ENABLE_SPANISH_SUPPORT } = require('../config');
 const { localFileAdapter } = require('../helpers/file-adapter');
 const { Text, File } = require('@keystonejs/fields');
 const { atTracking } = require('@keystonejs/list-plugins');
 
-module.exports = {
+const config = {
   mediaListConfig: {
     fields: {
       name: { type: Text },
@@ -25,3 +26,10 @@ module.exports = {
     ],
   },
 };
+
+if (ENABLE_SPANISH_SUPPORT) {
+  config.mediaListConfig.fields.nameInSpanish = { type: Text };
+  config.mediaListConfig.fields.captionInSpanish = { type: Text };
+}
+
+module.exports = config;

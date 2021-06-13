@@ -1,9 +1,9 @@
-const { SETUP } = require('../config');
+const { SETUP, ENABLE_SPANISH_SUPPORT } = require('../config');
 const access = require('../helpers/access-control');
 const { Text, Checkbox, Color, Integer } = require('@keystonejs/fields');
 const { atTracking } = require('@keystonejs/list-plugins');
 
-module.exports = {
+const config = {
   generalSettingListConfig: {
     fields: {
       presetName: { type: Text },
@@ -46,3 +46,10 @@ module.exports = {
     }
   ]`,
 };
+
+if (ENABLE_SPANISH_SUPPORT) {
+  config.generalSettingListConfig.fields.kioskTitleInSpanish = { type: Text };
+  config.generalSettingListConfig.fields.showLanguageToggleButton = { type: Boolean };
+}
+
+module.exports = config;
