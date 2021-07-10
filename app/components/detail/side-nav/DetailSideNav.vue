@@ -2,8 +2,8 @@
   <nav class="detail-side-nav">
     <DetailSideNavActivityList />
     <div
-      @click="$router.push('/')"
       class="home-button"
+      @click="$router.push('/')"
     >
       <ArrowButton
         :color="generalSettings.textColor"

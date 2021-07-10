@@ -42,11 +42,6 @@ export default {
   mounted () {
     console.log(this.tabs);
   },
-  methods: {
-    selectTab (index) {
-      this.selectedTabIndex = index;
-    },
-  },
 };
 </script>
 

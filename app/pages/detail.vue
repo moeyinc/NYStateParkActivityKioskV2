@@ -1,8 +1,8 @@
 <template>
   <div
     v-if="generalSettings && activities && activityColors"
-    @click="resetTimer"
     class="detail-page"
+    @click="resetTimer"
   >
     <div class="container">
       <DetailSideNav />
@@ -18,12 +18,12 @@ import DetailMainContainer from '@comps/detail/DetailMainContainer';
 import pageAsyncDataMixin from '@/mixins/page-async-data-mixin';
 
 export default {
-  transition: 'fade',
   components: {
     DetailSideNav,
     DetailMainContainer,
   },
   mixins: [pageAsyncDataMixin],
+  transition: 'fade',
   data: () => ({
     screenTimer: null,
   }),

@@ -4,9 +4,9 @@
       v-show="isScrollbarVisible"
       :color="generalSettings.textColor"
       :size="20"
-      @click="$emit('scroll-up')"
       direction="up"
       class="up-button"
+      @click="$emit('scroll-up')"
     />
     <Scrollbar
       :width="30"
@@ -14,16 +14,16 @@
       :base-border-radius="15"
       :thumb-color="generalSettings.textColor"
       :thumb-border-radius="15"
-      @visibility-changed="(val) => isScrollbarVisible = val"
       class="scrollbar"
+      @visibility-changed="(val) => isScrollbarVisible = val"
     />
     <ArrowButton
       v-show="isScrollbarVisible"
       :color="generalSettings.textColor"
       :size="20"
-      @click="$emit('scroll-down')"
       direction="down"
       class="down-button"
+      @click="$emit('scroll-down')"
     />
   </div>
 </template>

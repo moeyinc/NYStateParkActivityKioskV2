@@ -5,8 +5,8 @@
       color: generalSettings ? generalSettings.textColor : 'white',
       cursor: isDev || showCursor ? 'auto' : 'none',
     }"
-    @click="displayRipple"
     class="default-layout"
+    @click="displayRipple"
   >
     <nuxt class="page" />
   </div>

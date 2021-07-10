@@ -1,11 +1,11 @@
 <template>
   <div
-    @click="$emit('click')"
     :style="{
       width: size * 2 + 'px',
       height: size * 2 + 'px',
     }"
     class="arrow-button"
+    @click="$emit('click')"
   >
     <div
       :class="['inner', {

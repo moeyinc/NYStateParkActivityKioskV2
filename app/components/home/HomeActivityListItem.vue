@@ -1,11 +1,11 @@
 <template>
   <div
     :style="buttonStyle"
+    class="home-activity-list-item"
     @mousedown="active = true"
     @mouseup="active = false"
     @mouseleave="active = false"
     @click="$emit('click')"
-    class="home-activity-list-item"
   >
     <div class="inner">
       <simple-svg
@@ -13,9 +13,9 @@
         :fill="svgColor"
         :stroke="svgColor"
         :height="svgHeight"
-        @load="iconLoaded = true"
         fill-class-name="fill-to-change"
         stroke-class-name="stroke-to-change"
+        @load="iconLoaded = true"
       />
       <div
         v-show="iconLoaded"

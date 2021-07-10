@@ -20,9 +20,9 @@
         />
       </ScrollAreaContainer>
       <ScrollbarContainer
+        class="scrollbar-container"
         @scroll-up="scrollY(-1)"
         @scroll-down="scrollY(1)"
-        class="scrollbar-container"
       />
     </div>
   </div>

@@ -17,6 +17,7 @@
       >
     </div>
     <div class="wysiwyg">
+      <!-- eslint-disable-next-line vue/no-v-html -->
       <div v-html="filteredContent" />
     </div>
   </div>

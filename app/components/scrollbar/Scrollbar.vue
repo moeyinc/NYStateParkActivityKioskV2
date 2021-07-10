@@ -2,14 +2,14 @@
   <div
     v-if="displayable"
     :style="baseStyle"
-    @wheel="(e) => wheelScroll && scroll(e)"
     class="scrollbar-base"
+    @wheel="(e) => wheelScroll && scroll(e)"
   >
     <div
       :style="thumbStyle"
+      class="scrollbar-thumb"
       @touchstart="(e) => touchScroll && startDrag(e)"
       @mousedown="(e) => mouseScroll && startDrag(e)"
-      class="scrollbar-thumb"
     />
   </div>
 </template>

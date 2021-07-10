@@ -15,12 +15,12 @@ import HomeActivityList from '@comps/home/HomeActivityList';
 import pageAsyncDataMixin from '@/mixins/page-async-data-mixin';
 
 export default {
-  transition: 'fade',
   components: {
     HomeHeader,
     HomeActivityList,
   },
   mixins: [pageAsyncDataMixin],
+  transition: 'fade',
   computed: {
     ...mapState(['generalSettings', 'activities', 'activityColors']),
   },
