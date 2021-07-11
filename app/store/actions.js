@@ -14,6 +14,8 @@ export default {
             hideParkLogo
             screenTimeoutInSeconds
             pollingIntervalInMinutes
+            kioskTitleInSpanish
+            showLanguageToggleButton
           }
         }
       `,
@@ -53,6 +55,8 @@ export default {
               publicUrl
               filename
             }
+            buttonLabelInSpanish
+            pageTitleInSpanish
             tabItems {
               id
               updatedAt
@@ -61,6 +65,8 @@ export default {
               tabWidth
               content
               order
+              tabLabelInSpanish
+              contentInSpanish
               primaryHeaderImage {
                 id
                 name
@@ -69,6 +75,8 @@ export default {
                   publicUrl
                   filename
                 }
+                nameInSpanish
+                captionInSpanish
               }
               subHeaderImage {
                 id
@@ -78,6 +86,8 @@ export default {
                   publicUrl
                   filename
                 }
+                nameInSpanish
+                captionInSpanish
               }
               isGallery
               galleryImages {
@@ -88,6 +98,8 @@ export default {
                   publicUrl
                   filename
                 }
+                nameInSpanish
+                captionInSpanish
               }
             }
           }

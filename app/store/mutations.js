@@ -20,6 +20,9 @@ export default {
   updateIsFirstSideNavItemActive (state, value) {
     state.isFirstSideNavItemActive = value;
   },
+  updateIsSpanishEnabled (state, value) {
+    state.isSpanishEnabled = value;
+  },
 };
 
 function checkIfActivitiesAreUpdated (oldActivities, newActivities) {

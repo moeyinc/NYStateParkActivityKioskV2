@@ -3,6 +3,7 @@
     <h1>{{ title }}</h1>
     <div class="icon-wrapper">
       <simple-svg
+        v-if="!showLanguageToggleButton"
         :src="$getFileURL(iconFilename)"
         fill-class-name="fill-to-change"
         fill="white"
@@ -14,6 +15,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   props: {
     title: {
@@ -23,6 +26,12 @@ export default {
     iconFilename: {
       type: String,
       default: '',
+    },
+  },
+  computed: {
+    ...mapState(['generalSettings']),
+    showLanguageToggleButton () {
+      return this.generalSettings.showLanguageToggleButton;
     },
   },
 };

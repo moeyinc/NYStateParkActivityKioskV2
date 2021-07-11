@@ -4,4 +4,5 @@ export default () => ({
   activityColors: null,
   selectedActivityId: '',
   isFirstSideNavItemActive: false,
+  isSpanishEnabled: false,
 });

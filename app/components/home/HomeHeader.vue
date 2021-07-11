@@ -7,7 +7,7 @@
     </div>
     <ParkLogo
       v-if="showParkLogo"
-      class="park-logo"
+      :class="['park-logo', { 'make-space-for-toggle-button': showLanguageToggleButton }]"
     />
   </div>
 </template>
@@ -27,6 +27,9 @@ export default {
     },
     showParkLogo () {
       return !this.generalSettings.hideParkLogo;
+    },
+    showLanguageToggleButton () {
+      return this.generalSettings.showLanguageToggleButton;
     },
   },
 };
@@ -51,4 +54,7 @@ export default {
     top: 20px
     right: 20px
     width: 500px
+    &.make-space-for-toggle-button
+      top: 68px
+      right: 250px
 </style>
