@@ -1,6 +1,9 @@
 # NYStateParkActivityKioskV2
 
 ## Update log
+### V2.2
+- Added dual-language feature. When the keystone is initialized with `ENABLE_SPANISH_SUPPORT=true`, you'll see additional fields in the admin UI and a toggle button in the kiosk app.
+
 ### V2.1
 - Decoupled cms, nuxt-app, and media-server. Removed all interdependent codes and made all ports and domains manageable with .env files (cms requires package.json to change port)
 - Added offline support. The frontend caches static files and media assets and stores API responses as JSON in IndexdDB, and if it's offline it loads data from them instead of trying to throwing HTTP requests.
