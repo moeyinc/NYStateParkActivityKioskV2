@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import ScrollAreaContainer from '@comps/scrollbar/ScrollAreaContainer';
 import ScrollbarContainer from '@comps/scrollbar/ScrollbarContainer';
 import BinderContentGeneral from './BinderContentGeneral';
@@ -60,6 +61,7 @@ export default {
     },
   },
   computed: {
+    ...mapState(['isSpanishEnabled']),
     topLeftGapFillerStyle () {
       return {
         backgroundColor: this.subColor,
@@ -71,7 +73,7 @@ export default {
       };
     },
     content () {
-      return this.selectedTab && this.selectedTab.content;
+      return this.isSpanishEnabled ? this.selectedTab && this.selectedTab.contentInSpanish : this.selectedTab && this.selectedTab.content;
     },
     primaryHeaderImageFilename () {
       const image = this.selectedTab && this.selectedTab.primaryHeaderImage;

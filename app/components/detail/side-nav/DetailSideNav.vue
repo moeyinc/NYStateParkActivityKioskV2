@@ -11,7 +11,7 @@
         direction="left"
       />
       <div class="text">
-        MAIN MENU
+        {{ isSpanishEnabled ? 'MENÚ' : 'MAIN MENU' }}
       </div>
     </div>
   </nav>
@@ -28,7 +28,7 @@ export default {
     ArrowButton,
   },
   computed: {
-    ...mapState(['generalSettings']),
+    ...mapState(['generalSettings', 'isSpanishEnabled']),
     triangleStyle () {
       return {
         backgroundColor: this.generalSettings.textColor,

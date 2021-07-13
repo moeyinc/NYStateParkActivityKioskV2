@@ -73,6 +73,7 @@ MEDIA_DIR="./media"
 MEDIA_SERVER_API_URL="http://XXXXXXXX.com/media"
 PROJECT_NAME="MOEY ACTIVITY KIOSK CMS"
 ```
+3. if you need the dual language mode, add `ENABLE_SPANISH_SUPPORT=true` to the .env file
 
 #### Initialize CMS with new data
 - ```npm run dev:setup-all```, then open it in a browser, login to the CMS and create an admin user

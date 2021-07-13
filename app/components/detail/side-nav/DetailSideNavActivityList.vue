@@ -3,7 +3,7 @@
     <DetailSideNavActivityListItem
       v-for="(activity, index) in activities"
       :key="activity.id"
-      :label="activity.buttonLabel"
+      :label="isSpanishEnabled ? activity.buttonLabelInSpanish : activity.buttonLabel"
       :icon-filename="activity.svgIcon && activity.svgIcon.filename"
       :main-color="activityColors[index] && activityColors[index].mainColor"
       :first-tab="index === 0"
@@ -22,7 +22,7 @@ export default {
     DetailSideNavActivityListItem,
   },
   computed: {
-    ...mapState(['activities', 'selectedActivityId', 'activityColors']),
+    ...mapState(['activities', 'selectedActivityId', 'activityColors', 'isSpanishEnabled']),
   },
   methods: {
     ...mapMutations(['selectActivity']),

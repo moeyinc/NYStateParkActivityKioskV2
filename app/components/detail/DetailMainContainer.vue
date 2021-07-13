@@ -3,7 +3,7 @@
     <div :style="topLeftGapFillerStyle" class="top-left-gap-filler" />
     <div :style="baseStyle" class="base">
       <PageTitle
-        :title="selectedActivity.pageTitle"
+        :title="isSpanishEnabled ? selectedActivity.pageTitleInSpanish : selectedActivity.pageTitle"
         :icon-filename="selectedActivity.svgIcon && selectedActivity.svgIcon.filename"
       />
       <Binder />
@@ -22,7 +22,7 @@ export default {
     Binder,
   },
   computed: {
-    ...mapState(['selectedActivityId', 'activityColors', 'activities', 'isFirstSideNavItemActive']),
+    ...mapState(['selectedActivityId', 'activityColors', 'activities', 'isFirstSideNavItemActive', 'isSpanishEnabled']),
     ...mapGetters(['selectedActivity', 'selectedActivityColor']),
     isFirstActivitySelected () {
       return this.activities[0].id === this.selectedActivityId;

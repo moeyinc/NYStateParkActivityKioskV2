@@ -4,7 +4,7 @@
       <HomeActivityListItem
         v-for="(activity, index) in activities"
         :key="activity.id"
-        :label="activity.buttonLabel"
+        :label="isSpanishEnabled ? activity.buttonLabelInSpanish : activity.buttonLabel"
         :icon-filename="activity.svgIcon && $getFileURL(activity.svgIcon.filename)"
         :main-color="activityColors[index] && activityColors[index].mainColor"
         :button-width="buttonWidth"
@@ -25,7 +25,7 @@ export default {
     HomeActivityListItem,
   },
   computed: {
-    ...mapState(['activities', 'activityColors']),
+    ...mapState(['activities', 'activityColors', 'isSpanishEnabled']),
     buttonWidth () {
       switch (this.activities.length) {
         case 15:

@@ -21,9 +21,9 @@ export default {
     ParkLogo,
   },
   computed: {
-    ...mapState(['generalSettings']),
+    ...mapState(['generalSettings', 'isSpanishEnabled']),
     kioskTitle () {
-      return this.generalSettings.kioskTitle;
+      return this.isSpanishEnabled ? this.generalSettings.kioskTitleInSpanish : this.generalSettings.kioskTitle;
     },
     showParkLogo () {
       return !this.generalSettings.hideParkLogo;

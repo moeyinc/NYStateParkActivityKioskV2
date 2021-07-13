@@ -3,7 +3,7 @@
     <BinderTabListItem
       v-for="(tab, index) in tabs"
       :key="tab.id"
-      :label="tab.tabLabel"
+      :label="isSpanishEnabled ? tab.tabLabelInSpanish : tab.tabLabel"
       :width="tab.tabWidth"
       :main-color="mainColor"
       :sub-color="subColor"
@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import BinderTabListItem from './BinderTabListItem';
 
 export default {
@@ -38,6 +39,9 @@ export default {
       type: Number,
       default: 0,
     },
+  },
+  computed: {
+    ...mapState(['isSpanishEnabled']),
   },
   mounted () {
     console.log(this.tabs);
