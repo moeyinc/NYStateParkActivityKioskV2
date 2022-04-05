@@ -6,6 +6,7 @@
   "private": true,
   "main": "electron-entry.js",
   "build": {
+    "extends": null,
     "appId": "nuxt-electron",
     "directories": {
       "output": "build"
