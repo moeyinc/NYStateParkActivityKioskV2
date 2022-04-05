@@ -8,7 +8,7 @@
     "node": ">=8.4.0 <13"
   },
   "config": {
-    "PORT": "8011"
+    "PORT": "3002"
   },
   "scripts": {
     "dev:setup-all": "cross-env NODE_ENV=development DISABLE_LOGGING=true SETUP=all PORT=$npm_package_config_PORT keystone dev",

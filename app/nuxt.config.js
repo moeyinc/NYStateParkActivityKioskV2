@@ -4,7 +4,8 @@ require('dotenv').config();
 const GENERATIVE_SW_SCRIPT_NAME = 'sw.custom.js';
 
 module.exports = {
-  mode: 'universal',
+  ssr: false,
+  target: 'static',
   server: {
     port: process.env.PORT || 3000,
   },
