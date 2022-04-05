@@ -25,7 +25,10 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "nuxt": "^2.10.2",
-    "url-join": "^4.0.1"
+    "react-scripts": "^5.0.0",
+    "sass-loader": "^10.1.1",
+    "url-join": "4.0.1",
+    "win-node-env": "^0.6.1"
   },
   "devDependencies": {
     "@nuxtjs/axios": "^5.13.6",

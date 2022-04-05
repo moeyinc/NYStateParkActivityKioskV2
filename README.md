@@ -47,8 +47,9 @@ API_URL="http://XXXXXXXX.com/admin/api"
 MEDIA_SERVER_API_URL="http://XXXXXXXX.com/media"
 SHOW_CURSOR=true
 ```
-3. ```npm run build``` or ```npm run electron:build```
-4. ```npm run start``` or  ```npm run electron```
+3. ```npm run build``` or ```npm run electron:build``` 
+4. for client-side rendering only, also run ```npm run generate```
+5. ```npm run start``` or  ```npm run electron```
 
 ## Media server
 1. ```cd media-server && npm install```
